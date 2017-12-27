@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UPV-EHU Tour</string>
+    <string name="welcome">Bienvenido al Tour del Campus de Leioa</string>
+    <string name="login">Usuario</string>
+    <string name="pass">Contraseña</string>
+    <string name="botonLogin">Iniciar Sesión</string>
+    <string name="botonMantenerSesion">Mantener Sesión</string>
+    <string name="botonRegistrase">Registrarse</string>
+    <string name="title_activity_map">Map</string>
+</resources>

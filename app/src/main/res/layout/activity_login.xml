@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="eus.ehu.tta.upv_ehutour.LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="23dp"
+        android:textColor="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="@string/login"
+        android:layout_marginTop="35dp"/>
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="@string/pass"
+        android:layout_marginTop="15dp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:text="@string/botonLogin"
+        android:onClick="login"/>
+    <Button
+        android:id="@+id/botonMantenerSesion"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="@string/botonMantenerSesion"
+        android:visibility="gone"
+        android:onClick="mantenerSesion"/>
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="@string/botonRegistrase"
+        android:onClick="registro"/>
+
+</LinearLayout>
