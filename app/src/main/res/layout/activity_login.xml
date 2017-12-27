@@ -8,10 +8,11 @@
     tools:context="eus.ehu.tta.upv_ehutour.LoginActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:gravity="center"
+        android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:textSize="23dp"
         android:textColor="@color/black"

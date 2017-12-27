@@ -7,4 +7,8 @@
     <string name="botonMantenerSesion">Mantener Sesión</string>
     <string name="botonRegistrase">Registrarse</string>
     <string name="title_activity_map">Map</string>
+    <string name="botonMaps">Llegar Aquí</string>
+    <string name="titlePolideportivo">Polideportivo</string>
+    <string name="textoPolideportivo1">El polideportivo es el lugar donde podemos venir a hacer deporte después de clase</string>
+    <string name="textoPolideportivo2">Horario del polideportivo: 09:00-13:00</string>
 </resources>
