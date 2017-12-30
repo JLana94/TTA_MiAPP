@@ -33,4 +33,8 @@
     <string name="spinner6Text">Facultad de Comunicación</string>
     <string name="acierto">Has acertado</string>
     <string name="fallo">Has fallado</string>
+    <string name="titleArboretum">Arboretum</string>
+    <string name="textoArboretum">El arboretum es un lugar de tranquilidad donde...</string>
+    <string name="botonSacarFoto">Sacar Foto</string>
+    <string name="botonVerFotos">Ver Fotos</string>
 </resources>
