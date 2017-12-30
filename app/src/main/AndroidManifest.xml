@@ -23,7 +23,12 @@
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme" />
         <activity android:name=".PolideportivoActivity" />
-        <activity android:name=".PlazaLaboaActivity"></activity>
+        <activity android:name=".PlazaLaboaActivity" />
+        <activity android:name=".ArboretumActivity" />
+        <activity android:name=".BibliotecaActivity" />
+        <activity android:name=".HosteleriaActivity" />
+        <activity android:name=".BusActivity" />
+        <activity android:name=".MagisterioActivity"></activity>
     </application>
 
 </manifest>

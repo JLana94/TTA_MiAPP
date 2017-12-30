@@ -8,7 +8,29 @@
     <string name="botonRegistrase">Registrarse</string>
     <string name="title_activity_map">Map</string>
     <string name="botonMaps">Llegar Aquí</string>
+    <string name="botonPrueba">Prueba</string>
+    <string name="botonCheck">Comprobar</string>
     <string name="titlePolideportivo">Polideportivo</string>
     <string name="textoPolideportivo1">El polideportivo es el lugar donde podemos venir a hacer deporte después de clase</string>
     <string name="textoPolideportivo2">Horario del polideportivo: 09:00-13:00</string>
+    <string name="titlePlazaLaboa">Plaza Laboa</string>
+    <string name="textoPlazaLaboa">La prueba consite en enlazar las imagenes con el nombre correcto, solo se puede hacer si estas en la plaza Laboa así que cuando estés allí pulsa el botón prueba</string>
+    <string name="eligeOpcion">Elige una opción</string>
+    <string-array name="plazaLaboaOpciones">
+        <item>Elige una opción</item>
+        <item>Eroski</item>
+        <item>Cafeteria</item>
+        <item>Biblioteca</item>
+        <item>Futbolín</item>
+        <item>Facultad de Ciencias</item>
+        <item>Facultad de Comunicación</item>
+    </string-array>
+    <string name="spinner1Text">Biblioteca</string>
+    <string name="spinner2Text">Eroski</string>
+    <string name="spinner3Text">Futbolín</string>
+    <string name="spinner4Text">Cafeteria</string>
+    <string name="spinner5Text">Facultad de Ciencias</string>
+    <string name="spinner6Text">Facultad de Comunicación</string>
+    <string name="acierto">Has acertado</string>
+    <string name="fallo">Has fallado</string>
 </resources>
