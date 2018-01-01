@@ -3,18 +3,62 @@
     <string name="welcome">Bienvenido al Tour del Campus de Leioa</string>
     <string name="login">Usuario</string>
     <string name="pass">Contraseña</string>
+    <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
+    <string name="acierto">Has acertado</string>
+    <string name="fallo">Has fallado</string>
+
     <string name="botonLogin">Iniciar Sesión</string>
     <string name="botonMantenerSesion">Mantener Sesión</string>
     <string name="botonRegistrase">Registrarse</string>
-    <string name="title_activity_map">Map</string>
     <string name="botonMaps">Llegar Aquí</string>
     <string name="botonPrueba">Prueba</string>
     <string name="botonCheck">Comprobar</string>
+    <string name="botonPaginaBizkaibus">Página Bizkaibus</string>
+    <string name="botonTour">Comenzar Tour</string>
+    <string name="botonSacarFoto">Sacar Foto</string>
+    <string name="botonVerFotos">Ver Fotos</string>
+    <string name="botonAvanzar">Avanzar</string>
+    <string name="botonFinTour">Terminar Tour</string>
+
+    <string name="title_activity_map">Map</string>
+    <string name="titleBiblioteca">Biblioteca</string>
     <string name="titlePolideportivo">Polideportivo</string>
+    <string name="titleHosteleria">Hosteleria</string>
+    <string name="titleBus">Bizkaibus</string>
+    <string name="titlePlazaLaboa">Plaza Laboa</string>
+    <string name="titleArboretum">Arboretum</string>
+    <string name="titleMagisterio">Facultad de Magisterio</string>
+    <string name="titleSecretaria">Secretaría</string>
+    <string name="titleCafeteria">Cafetería</string>
+    <string name="titleComedor">Comedor</string>
+    <string name="titleSalaEstudios">Sala de Estudios</string>
+    <string name="titleAulas">Aulas</string>
+    <string name="titleDespachos">Despachos</string>
+    <string name="titleSalaActos">Sala de Actos</string>
+    <string name="titleSalaOrdenadores">Sala de Ordenadores</string>
+    <string name="titleTalleres">Talleres</string>
+
     <string name="textoPolideportivo1">El polideportivo es el lugar donde podemos venir a hacer deporte después de clase</string>
     <string name="textoPolideportivo2">Horario del polideportivo: 09:00-13:00</string>
-    <string name="titlePlazaLaboa">Plaza Laboa</string>
+    <string name="textoArboretum">El arboretum es un lugar de tranquilidad donde...</string>
+    <string name="textoBiblioteca1">Horarios Biblioteca: 08:00-20:00</string>
+    <string name="textoBiblioteca2">Para poder realizar esta prueba debes estar en la biblioteca, cuando te encuentres ahí pulsa el botón de prueba y si estas en la biblioteca se te presentará la pregunta</string>
     <string name="textoPlazaLaboa">La prueba consite en enlazar las imagenes con el nombre correcto, solo se puede hacer si estas en la plaza Laboa así que cuando estés allí pulsa el botón prueba</string>
+    <string name="texto2Hosteleria">Horario: 13:00-15:00</string>
+    <string name="texto1Hosteleria">En el edificio de hosteleria puedes venir a comer por un precio razonable</string>
+    <string name="textoBus">En esta parada de bus puedes coger los buses de Bizkaibus, para más información accede a la página de Bizkaibus</string>
+    <string name="texto1Magisterio">Bienvenido al tour virtual</string>
+    <string name="texto2Magisterio">A continuación puedes recorrer la facultad de magisterio mediante un tour virtual, para empezar pulsa el botón "Comenzar Tour"</string>
+    <string name="textoSecretaria">Ahora para poder avanzar tienes que sacar una foto al horario de secretaria que te será útil en tu día a día</string>
+    <string name="textoCafeteria">En esta ocasión tiene que contestar a una gran pregunta, posiblemente la más importante de todas...</string>
+    <string name="textoComedor">Como antes, tendrás que sacar una foto a uno de las herramientas más importantes de la universidad, el horno microondas</string>
+    <string name="textoSalaEstudios">Las salas de estudio son puntos de la universidad especialmente habilitados para estudiar en ellos, pero para poder ir lo primero que tienes que saber es...</string>
+    <string name="textoAulas">Las aulas vienen marcadas con un código que indica su localización y sigue la siguiente lógica...</string>
+    <string name="textoDespachos">Tendrás que visitar los despachos para revisiones, tutorias... Las tutorias son reuniones con el profesor de una asignatura que se hacen de forma indivdual para resolver dudas concretas,pero, los profesores tienen unos horarios concretos para ellas por ello es importante que sepas...</string>
+    <string name="textoSalaActos">La sala de actos o sala Juliana es el lugar donde se celebran acontecimientos especiales</string>
+    <string name="textoSalaOrdenadores">Las salas de ordenadores cuentan con equipos informáticos para poder hacer los trabajos que necesiten el uso de os mismos, especialmente aquellos trabajos que necesitan un software especial para ser realizados</string>
+    <string name="textoTalleres">Visitarás los talleres cuando tengas que hacer prácticas</string>
+
     <string name="eligeOpcion">Elige una opción</string>
     <string-array name="plazaLaboaOpciones">
         <item>Elige una opción</item>
@@ -25,35 +69,43 @@
         <item>Facultad de Ciencias</item>
         <item>Facultad de Comunicación</item>
     </string-array>
-    <string name="spinner1Text">Biblioteca</string>
-    <string name="spinner2Text">Eroski</string>
-    <string name="spinner3Text">Futbolín</string>
-    <string name="spinner4Text">Cafeteria</string>
-    <string name="spinner5Text">Facultad de Ciencias</string>
-    <string name="spinner6Text">Facultad de Comunicación</string>
-    <string name="acierto">Has acertado</string>
-    <string name="fallo">Has fallado</string>
-    <string name="titleArboretum">Arboretum</string>
-    <string name="textoArboretum">El arboretum es un lugar de tranquilidad donde...</string>
-    <string name="botonSacarFoto">Sacar Foto</string>
-    <string name="botonVerFotos">Ver Fotos</string>
-    <string name="titleBiblioteca">Biblioteca</string>
-    <string name="textoBiblioteca1">Horarios Biblioteca: 08:00-20:00</string>
-    <string name="textoBiblioteca2">Para poder realizar esta prueba debes estar en la biblioteca, cuando te encuentres ahí pulsa el botón de prueba y si estas en la biblioteca se te presentará la pregunta</string>
-    <string name="textoBiblioteca3">Y lo más importante ¿Qué necesitas para entrar en la Biblioteca?</string>
+    <string name="spinner1PlazaLaboaText">Biblioteca</string>
+    <string name="spinner2PlazaLaboaText">Eroski</string>
+    <string name="spinner3PlazaLaboaText">Futbolín</string>
+    <string name="spinner4PlazaLaboaText">Cafeteria</string>
+    <string name="spinner5PlazaLaboaText">Facultad de Ciencias</string>
+    <string name="spinner6PlazaLaboaText">Facultad de Comunicación</string>
+
+    <string name="preguntaSalaEstudios">¿Cuál es el horarioa?</string>
+    <string-array name="salaEstudiosOpciones">
+        <item>08:00-18:00</item>
+        <item>09:00-20:00</item>
+        <item>08:00-20:00</item>
+        <item>08:30-20:30</item>
+    </string-array>
+    <string name="spinner1SalaEstudiosText">Biblioteca</string>
+    <string name="spinner2SalaEstudiosText">Eroski</string>
+    <string name="spinner3SalaEstudiosText">Futbolín</string>
+    <string name="spinner4SalaEstudiosText">Cafeteria</string>
+
+
+    <string name="preguntaBiblioteca">Y lo más importante ¿Qué necesitas para entrar en la Biblioteca?</string>
     <string name="respuesta1Biblioteca">Carnet de la UPV</string>
     <string name="respuesta2Biblioteca">DNI</string>
     <string name="respuesta3Biblioteca">Carnet de socio del Athletic</string>
     <string name="respuesta4Biblioteca">La entrada cuesta 5 €</string>
-    <string name="titleHosteleria">Hosteleria</string>
-    <string name="texto2Hosteleria">Horario: 13:00-15:00</string>
-    <string name="texto1Hosteleria">En el edificio de hosteleria puedes venir a comer por un precio razonable</string>
-    <string name="titleBus">Bizkaibus</string>
-    <string name="textoBus">En esta parada de bus puedes coger los buses de Bizkaibus, para más información accede a la página de Bizkaibus</string>
-    <string name="botonPaginaBizkaibus">Página Bizkaibus</string>
-    <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
-    <string name="titleMagisterio">Facultad de Magisterio</string>
-    <string name="texto1Magisterio">Bienvenido al tour virtual</string>
-    <string name="texto2Magisterio">A continuación puedes recorrer la facultad de magisterio mediante un tour virtual, para empezar pulsa el botón "Comenzar Tour"</string>
-    <string name="botonTour">Comenzar Tour</string>
+
+    <string name="preguntaCafeteria">¿Cuanto cuestan los pinchos de tortilla?</string>
+    <string name="respuesta1Cafeteria">1 €</string>
+    <string name="respuesta2Cafeteria">1,2 €</string>
+    <string name="respuesta3Cafeteria">1,4 €</string>
+    <string name="respuesta4Cafeteria">1,5 €</string>
+
+    <string name="preguntaDespachos">¿Dónde puedes encontrar los horarios de tutorias?</string>
+    <string name="respuesta1Despachos">Los recibes en GMAIL</string>
+    <string name="respuesta2Despachos">Están disponibles en GAUR</string>
+    <string name="respuesta3Despachos">Los recibes en tu correo de EHU</string>
+    <string name="respuesta4Despachos">Hay que solicitarlos en secretaría</string>
+
+
 </resources>

@@ -29,7 +29,15 @@
         <activity android:name=".HosteleriaActivity" />
         <activity android:name=".BusActivity" />
         <activity android:name=".MagisterioActivity" />
-        <activity android:name=".SecretariaActivity"></activity>
+        <activity android:name=".SecretariaActivity" />
+        <activity android:name=".CafeteriaActivity" />
+        <activity android:name=".ComedorActivity" />
+        <activity android:name=".SalaEstudiosActivity" />
+        <activity android:name=".AulasActivity" />
+        <activity android:name=".DespachosActivity" />
+        <activity android:name=".SalaActosActivity" />
+        <activity android:name=".SalaOrdenadoresActivity" />
+        <activity android:name=".TalleresActivity"></activity>
     </application>
 
 </manifest>

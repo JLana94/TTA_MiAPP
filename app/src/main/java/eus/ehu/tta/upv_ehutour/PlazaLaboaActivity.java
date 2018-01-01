@@ -41,7 +41,7 @@ public class PlazaLaboaActivity extends AppCompatActivity {
         Spinner spinner5=(Spinner) findViewById(R.id.spinner5);
         Spinner spinner6=(Spinner) findViewById(R.id.spinner6);
 
-        if(String.valueOf(spinner1.getSelectedItem()).equals(getResources().getString(R.string.spinner1Text))&&String.valueOf(spinner2.getSelectedItem()).equals(getResources().getString(R.string.spinner2Text))&&String.valueOf(spinner3.getSelectedItem()).equals(getResources().getString(R.string.spinner3Text))&&String.valueOf(spinner4.getSelectedItem()).equals(getResources().getString(R.string.spinner4Text))&&String.valueOf(spinner5.getSelectedItem()).equals(getResources().getString(R.string.spinner5Text))&&String.valueOf(spinner6.getSelectedItem()).equals(getResources().getString(R.string.spinner6Text)))
+        if(String.valueOf(spinner1.getSelectedItem()).equals(getResources().getString(R.string.spinner1PlazaLaboaText))&&String.valueOf(spinner2.getSelectedItem()).equals(getResources().getString(R.string.spinner2PlazaLaboaText))&&String.valueOf(spinner3.getSelectedItem()).equals(getResources().getString(R.string.spinner3PlazaLaboaText))&&String.valueOf(spinner4.getSelectedItem()).equals(getResources().getString(R.string.spinner4PlazaLaboaText))&&String.valueOf(spinner5.getSelectedItem()).equals(getResources().getString(R.string.spinner5PlazaLaboaText))&&String.valueOf(spinner6.getSelectedItem()).equals(getResources().getString(R.string.spinner6PlazaLaboaText)))
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
             //Aqui falta escribir que deje almaxenado en local que superado esta prueba
