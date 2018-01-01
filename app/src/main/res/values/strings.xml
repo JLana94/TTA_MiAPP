@@ -37,4 +37,15 @@
     <string name="textoArboretum">El arboretum es un lugar de tranquilidad donde...</string>
     <string name="botonSacarFoto">Sacar Foto</string>
     <string name="botonVerFotos">Ver Fotos</string>
+    <string name="titleBiblioteca">Biblioteca</string>
+    <string name="textoBiblioteca1">Horarios Biblioteca: 08:00-20:00</string>
+    <string name="textoBiblioteca2">Para poder realizar esta prueba debes estar en la biblioteca, cuando te encuentres ahí pulsa el botón de prueba y si estas en la biblioteca se te presentará la pregunta</string>
+    <string name="textoBiblioteca3">Y lo más importante ¿Qué necesitas para entrar en la Biblioteca?</string>
+    <string name="respuesta1Biblioteca">Carnet de la UPV</string>
+    <string name="respuesta2Biblioteca">DNI</string>
+    <string name="respuesta3Biblioteca">Carnet de socio del Athletic</string>
+    <string name="respuesta4Biblioteca">La entrada cuesta 5 €</string>
+    <string name="titleHosteleria">Hosteleria</string>
+    <string name="texto2Hosteleria">Horario: 13:00-15:00</string>
+    <string name="texto1Hosteleria">En el edificio de hosteleria puedes venir a comer por un precio razonable</string>
 </resources>
