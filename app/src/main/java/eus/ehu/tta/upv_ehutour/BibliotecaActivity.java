@@ -44,7 +44,6 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         }
         else {
             Toast.makeText(this, getResources().getString(R.string.fallo), Toast.LENGTH_SHORT).show();
-            grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
             grupo.getChildAt(selected).setBackgroundColor(getResources().getColor(R.color.rojo));
         }
 

@@ -32,16 +32,16 @@ public class CafeteriaActivity extends AppCompatActivity {
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
             grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
+            Button avanzar=(Button) findViewById(R.id.botonAvanzarCafeteria);
+            avanzar.setEnabled(true);
             //Aqui falta escribir que deje almaxenado en local que superado esta prueba
         }
         else {
             Toast.makeText(this, getResources().getString(R.string.fallo), Toast.LENGTH_SHORT).show();
-            grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
             grupo.getChildAt(selected).setBackgroundColor(getResources().getColor(R.color.rojo));
         }
 
-        Button avanzar=(Button) findViewById(R.id.botonAvanzarCafeteria);
-        avanzar.setEnabled(true);
+
     }
 
     public void avanzar(View view) {

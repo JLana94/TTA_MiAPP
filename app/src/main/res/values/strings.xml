@@ -5,7 +5,7 @@
     <string name="pass">Contraseña</string>
     <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
     <string name="acierto">Has acertado</string>
-    <string name="fallo">Has fallado</string>
+    <string name="fallo">Has fallado, vuelve a intentarlo</string>
 
     <string name="botonLogin">Iniciar Sesión</string>
     <string name="botonMantenerSesion">Mantener Sesión</string>
@@ -53,7 +53,7 @@
     <string name="textoCafeteria">En esta ocasión tiene que contestar a una gran pregunta, posiblemente la más importante de todas...</string>
     <string name="textoComedor">Como antes, tendrás que sacar una foto a uno de las herramientas más importantes de la universidad, el horno microondas</string>
     <string name="textoSalaEstudios">Las salas de estudio son puntos de la universidad especialmente habilitados para estudiar en ellos, pero para poder ir lo primero que tienes que saber es...</string>
-    <string name="textoAulas">Las aulas vienen marcadas con un código que indica su localización y sigue la siguiente lógica...</string>
+    <string name="textoAulas">Las aulas vienen marcadas con un código que indica su localización y sigue la siguiente lógica, primero se indica el edificio al que pertenece, luego el piso en el que está el aula y por último el número de aula concreto</string>
     <string name="textoDespachos">Tendrás que visitar los despachos para revisiones, tutorias... Las tutorias son reuniones con el profesor de una asignatura que se hacen de forma indivdual para resolver dudas concretas,pero, los profesores tienen unos horarios concretos para ellas por ello es importante que sepas...</string>
     <string name="textoSalaActos">La sala de actos o sala Juliana es el lugar donde se celebran acontecimientos especiales</string>
     <string name="textoSalaOrdenadores">Las salas de ordenadores cuentan con equipos informáticos para poder hacer los trabajos que necesiten el uso de os mismos, especialmente aquellos trabajos que necesitan un software especial para ser realizados</string>
@@ -76,18 +76,14 @@
     <string name="spinner5PlazaLaboaText">Facultad de Ciencias</string>
     <string name="spinner6PlazaLaboaText">Facultad de Comunicación</string>
 
-    <string name="preguntaSalaEstudios">¿Cuál es el horarioa?</string>
+    <string name="preguntaSalaEstudios">¿Cuál es el horario?</string>
     <string-array name="salaEstudiosOpciones">
         <item>08:00-18:00</item>
         <item>09:00-20:00</item>
         <item>08:00-20:00</item>
         <item>08:30-20:30</item>
     </string-array>
-    <string name="spinner1SalaEstudiosText">Biblioteca</string>
-    <string name="spinner2SalaEstudiosText">Eroski</string>
-    <string name="spinner3SalaEstudiosText">Futbolín</string>
-    <string name="spinner4SalaEstudiosText">Cafeteria</string>
-
+    <string name="spinnerSalaEstudiosText">08:00-20:00</string>
 
     <string name="preguntaBiblioteca">Y lo más importante ¿Qué necesitas para entrar en la Biblioteca?</string>
     <string name="respuesta1Biblioteca">Carnet de la UPV</string>
