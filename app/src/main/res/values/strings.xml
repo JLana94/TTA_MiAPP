@@ -48,4 +48,8 @@
     <string name="titleHosteleria">Hosteleria</string>
     <string name="texto2Hosteleria">Horario: 13:00-15:00</string>
     <string name="texto1Hosteleria">En el edificio de hosteleria puedes venir a comer por un precio razonable</string>
+    <string name="titleBus">Bizkaibus</string>
+    <string name="textoBus">En esta parada de bus puedes coger los buses de Bizkaibus, para más información accede a la página de Bizkaibus</string>
+    <string name="botonPaginaBizkaibus">Página Bizkaibus</string>
+    <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
 </resources>
