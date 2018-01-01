@@ -19,4 +19,11 @@ public class MagisterioActivity extends AppCompatActivity {
         Intent intent=new Intent(this,SecretariaActivity.class);
         startActivity(intent);
     }
+    public void llegarAqui(View view) {
+        Intent intent=new Intent(this,MapsActivity.class);
+        intent.putExtra("latitud",getResources().getString(R.string.latitudMagisterio));
+        intent.putExtra("longitud",getResources().getString(R.string.longitudMagisterio));
+        intent.putExtra("nombre",getResources().getString(R.string.titleMagisterio));
+        startActivity(intent);
+    }
 }

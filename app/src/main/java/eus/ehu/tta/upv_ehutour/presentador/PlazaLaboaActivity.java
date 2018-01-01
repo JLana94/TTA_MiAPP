@@ -60,6 +60,9 @@ public class PlazaLaboaActivity extends AppCompatActivity {
 
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
+        intent.putExtra("latitud",getResources().getString(R.string.latitudPlazaLaboa));
+        intent.putExtra("longitud",getResources().getString(R.string.longitudPlazaLaboa));
+        intent.putExtra("nombre",getResources().getString(R.string.titlePlazaLaboa));
         startActivity(intent);
     }
 }

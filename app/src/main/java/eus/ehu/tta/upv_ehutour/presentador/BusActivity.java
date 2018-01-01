@@ -33,4 +33,12 @@ public class BusActivity extends AppCompatActivity {
 
 
     }
+
+    public void llegarAqui(View view) {
+        Intent intent=new Intent(this,MapsActivity.class);
+        intent.putExtra("latitud",getResources().getString(R.string.latitudBizkaibus));
+        intent.putExtra("longitud",getResources().getString(R.string.longitudBizkaibus));
+        intent.putExtra("nombre",getResources().getString(R.string.titleBus));
+        startActivity(intent);
+    }
 }

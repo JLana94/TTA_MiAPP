@@ -112,7 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:text="@string/botonMaps"/>
+            android:text="@string/botonMaps"
+            android:onClick="llegarAqui"/>
 
 
 

@@ -1,5 +1,6 @@
 package eus.ehu.tta.upv_ehutour.presentador;
 
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,5 +72,13 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         Button botonCheck=(Button)findViewById(R.id.botonCheckBilioteca);
         botonCheck.setVisibility(View.VISIBLE);
 
+    }
+
+    public void llegarAqui(View view) {
+        Intent intent=new Intent(this,MapsActivity.class);
+        intent.putExtra("latitud",getResources().getString(R.string.latitudBiblioteca));
+        intent.putExtra("longitud",getResources().getString(R.string.longitudBiblioteca));
+        intent.putExtra("nombre",getResources().getString(R.string.titleBiblioteca));
+        startActivity(intent);
     }
 }

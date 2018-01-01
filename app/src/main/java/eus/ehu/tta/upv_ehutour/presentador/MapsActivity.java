@@ -3,6 +3,7 @@ package eus.ehu.tta.upv_ehutour.presentador;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
@@ -10,6 +11,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -17,8 +20,11 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,9 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,13 +46,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+
 
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.DataParser;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        LocationListener {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
@@ -56,6 +61,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String provider;
     private LatLng miUbicacion;
     private LatLng destino;
+    private String nomDestino;
+    private LocationRequest mLocationRequest;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +72,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Intent intent=getIntent();
+        destino=new LatLng(Double.valueOf(intent.getStringExtra("latitud")),Double.valueOf(intent.getStringExtra("longitud")));
+        nomDestino=intent.getStringExtra("nombre");
+
+
+
+
+
+
+
 
     }
 
@@ -84,9 +102,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            //mMap.setMyLocationEnabled(true);
-
-            requestLocation();
+            mMap.setMyLocationEnabled(true);
+            configureMap();
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -99,11 +116,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @SuppressLint("MissingPermission")
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 99) {
-            if (permissions.length == 1 &&
-                    permissions[0] == Manifest.permission.ACCESS_FINE_LOCATION &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 mMap.setMyLocationEnabled(true);
-                requestLocation();
+                configureMap();
             } else {
                 Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
             }
@@ -111,79 +126,89 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @SuppressLint("MissingPermission")
-    private void requestLocation(){
-        Log.d("Mi Ubicación", "Aqui si");
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        provider = locationManager.getBestProvider(criteria, true);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10, 0, mListener);
-        Log.d("Mi Ubicación", "2");
-        //@SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(provider);
-        Log.d("Mi Ubicación", "Antes de conseguir ubicación");
-        //miUbicacion=new LatLng(location.getLatitude(),location.getLongitude());
-        Log.d("Mi Ubicación", "Después de conseguir ubicación");
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(43.3295184, -2.960398);
-        LatLng sydney2 = new LatLng(43.3320669, -2.9720285);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(sydney2).title("Marker in Sydney2"));
+    private void configureMap(){
 
-        //String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +miUbicacion.latitude+ "," + miUbicacion.longitude  + "&destination=" +sydney2.latitude+ "," + sydney2.longitude  + "&sensor=false&units=metric";
-        //FetchUrl FetchUrl = new FetchUrl();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        mGoogleApiClient.connect();
 
-        // Start downloading json data from Google Directions API
-        //FetchUrl.execute(url);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client.
 
-    private LocationListener mListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            /*Log.d("Mi Ubicación", "Antes de conseguir ubicación");
-            miUbicacion=new LatLng(location.getLatitude(),location.getLongitude());
-            Log.d("Mi Ubicación", "Después de conseguir ubicación");
-            // Add a marker in Sydney and move the camera
-            LatLng sydney = new LatLng(43.3295184, -2.960398);
-            LatLng sydney2 = new LatLng(43.3320669, -2.9720285);
-            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            mMap.addMarker(new MarkerOptions().position(sydney2).title("Marker in Sydney2"));
+    }
 
-            String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +miUbicacion.latitude+ "," + miUbicacion.longitude  + "&destination=" +sydney2.latitude+ "," + sydney2.longitude  + "&sensor=false&units=metric";
-            FetchUrl FetchUrl = new FetchUrl();
+    @Override
+    protected void onStop() {
+        // Disconnecting the client invalidates it.
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
 
-            // Start downloading json data from Google Directions API
-            FetchUrl.execute(url);
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
+    @SuppressLint("MissingPermission")
+    @Override
+    public void onConnected(Bundle bundle) {
 
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(1000); // Update location every second
 
-
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-
-
-    };
+        Location lastKnownLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        miUbicacion=new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
 
 
 
 
+        String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +miUbicacion.latitude+ "," + miUbicacion.longitude  + "&destination=" +destino.latitude+ "," + destino.longitude  + "&sensor=false&units=metric&mode=walking";
+        FetchUrl FetchUrl = new FetchUrl();
 
+        // Start downloading json data from Google Directions API
+        FetchUrl.execute(url);
+        mMap.addMarker(new MarkerOptions().position(destino).title(nomDestino));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(destino));
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMinZoomPreference(15);
+        mMap.setMaxZoomPreference(20);
 
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 
     private class FetchUrl extends AsyncTask<String, Void, String> {
 
@@ -307,8 +332,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
-                lineOptions.width(10);
-                lineOptions.color(Color.RED);
+                lineOptions.width(20);
+                lineOptions.color(Color.BLUE);
 
                 Log.d("onPostExecute","onPostExecute lineoptions decoded");
 
