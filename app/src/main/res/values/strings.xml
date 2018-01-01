@@ -52,4 +52,8 @@
     <string name="textoBus">En esta parada de bus puedes coger los buses de Bizkaibus, para más información accede a la página de Bizkaibus</string>
     <string name="botonPaginaBizkaibus">Página Bizkaibus</string>
     <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
+    <string name="titleMagisterio">Facultad de Magisterio</string>
+    <string name="texto1Magisterio">Bienvenido al tour virtual</string>
+    <string name="texto2Magisterio">A continuación puedes recorrer la facultad de magisterio mediante un tour virtual, para empezar pulsa el botón "Comenzar Tour"</string>
+    <string name="botonTour">Comenzar Tour</string>
 </resources>
