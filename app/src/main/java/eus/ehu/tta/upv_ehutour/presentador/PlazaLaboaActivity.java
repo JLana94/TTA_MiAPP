@@ -1,5 +1,6 @@
-package eus.ehu.tta.upv_ehutour;
+package eus.ehu.tta.upv_ehutour.presentador;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import eus.ehu.tta.upv_ehutour.R;
 
 public class PlazaLaboaActivity extends AppCompatActivity {
 
@@ -53,5 +56,10 @@ public class PlazaLaboaActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void llegarAqui(View view) {
+        Intent intent=new Intent(this,MapsActivity.class);
+        startActivity(intent);
     }
 }

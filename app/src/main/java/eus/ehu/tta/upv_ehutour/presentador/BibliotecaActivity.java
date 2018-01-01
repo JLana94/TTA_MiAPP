@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import eus.ehu.tta.upv_ehutour.R;
 
 public class BibliotecaActivity extends AppCompatActivity implements View.OnClickListener {
 

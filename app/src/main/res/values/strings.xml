@@ -6,6 +6,7 @@
     <string name="URLBizkaibus">http://www.bizkaia.eus/home2/Temas/DetalleTema.asp?Tem_Codigo=195</string>
     <string name="acierto">Has acertado</string>
     <string name="fallo">Has fallado, vuelve a intentarlo</string>
+    <string name="permisoDenegado">Permiso denegado, no es posible seguir</string>
 
     <string name="botonLogin">Iniciar Sesión</string>
     <string name="botonMantenerSesion">Mantener Sesión</string>
@@ -102,6 +103,7 @@
     <string name="respuesta2Despachos">Están disponibles en GAUR</string>
     <string name="respuesta3Despachos">Los recibes en tu correo de EHU</string>
     <string name="respuesta4Despachos">Hay que solicitarlos en secretaría</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

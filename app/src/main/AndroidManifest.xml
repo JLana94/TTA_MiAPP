@@ -3,15 +3,17 @@
     package="eus.ehu.tta.upv_ehutour">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".presentador.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,25 +21,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MapActivity"
+            android:name=".presentador.MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme" />
-        <activity android:name=".PolideportivoActivity" />
-        <activity android:name=".PlazaLaboaActivity" />
-        <activity android:name=".ArboretumActivity" />
-        <activity android:name=".BibliotecaActivity" />
-        <activity android:name=".HosteleriaActivity" />
-        <activity android:name=".BusActivity" />
-        <activity android:name=".MagisterioActivity" />
-        <activity android:name=".SecretariaActivity" />
-        <activity android:name=".CafeteriaActivity" />
-        <activity android:name=".ComedorActivity" />
-        <activity android:name=".SalaEstudiosActivity" />
-        <activity android:name=".AulasActivity" />
-        <activity android:name=".DespachosActivity" />
-        <activity android:name=".SalaActosActivity" />
-        <activity android:name=".SalaOrdenadoresActivity" />
-        <activity android:name=".TalleresActivity"></activity>
+        <activity android:name=".presentador.PolideportivoActivity" />
+        <activity android:name=".presentador.PlazaLaboaActivity" />
+        <activity android:name=".presentador.ArboretumActivity" />
+        <activity android:name=".presentador.BibliotecaActivity" />
+        <activity android:name=".presentador.HosteleriaActivity" />
+        <activity android:name=".presentador.BusActivity" />
+        <activity android:name=".presentador.MagisterioActivity" />
+        <activity android:name=".presentador.SecretariaActivity" />
+        <activity android:name=".presentador.CafeteriaActivity" />
+        <activity android:name=".presentador.ComedorActivity" />
+        <activity android:name=".presentador.SalaEstudiosActivity" />
+        <activity android:name=".presentador.AulasActivity" />
+        <activity android:name=".presentador.DespachosActivity" />
+        <activity android:name=".presentador.SalaActosActivity" />
+        <activity android:name=".presentador.SalaOrdenadoresActivity" />
+        <activity android:name=".presentador.TalleresActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".presentador.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
