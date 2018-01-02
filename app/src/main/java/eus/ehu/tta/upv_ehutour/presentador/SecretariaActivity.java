@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -43,22 +44,21 @@ public class SecretariaActivity extends AppCompatActivity implements GoogleApiCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secretaria);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
     }
 
     public void sacarFoto() {
-        Log.d("Prueba","Antes de abrir la camara");
 
         if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA))
             Toast.makeText(this,getResources().getString(R.string.noCamara),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
         else
         {
-            Log.d("Prueba","Detecta camara");
 
             Intent intent= new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if(intent.resolveActivity(getPackageManager())!= null)
             {
-                Log.d("Prueba","Detecta app");
-                File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+                File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
                 try
                 {
                     File file= File.createTempFile("secretaria",".jpg",dir);
@@ -107,7 +107,17 @@ public class SecretariaActivity extends AppCompatActivity implements GoogleApiCl
     {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            checkPostion();
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                checkPostion();
+            }
+            else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        1);
+
+            }
+
 
 
 
@@ -124,11 +134,28 @@ public class SecretariaActivity extends AppCompatActivity implements GoogleApiCl
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 99) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    checkPostion();
+                }
+                else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            1);
+
+                }
+            } else {
+                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+            }
+        }
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkPostion();
             } else {
                 Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
             }
         }
+
     }
     public void checkPostion()
     {
