@@ -8,6 +8,8 @@ import android.view.View;
 import eus.ehu.tta.upv_ehutour.R;
 
 public class PolideportivoActivity extends AppCompatActivity {
+    private final String LATITUD="43.3295184";
+    private final String LONGITUD="-2.960398";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +18,8 @@ public class PolideportivoActivity extends AppCompatActivity {
     }
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
-        intent.putExtra("latitud",getResources().getString(R.string.latitudPolideportivo));
-        intent.putExtra("longitud",getResources().getString(R.string.longitudPolideportivo));
+        intent.putExtra("latitud",LATITUD);
+        intent.putExtra("longitud",LONGITUD);
         intent.putExtra("nombre",getResources().getString(R.string.titlePolideportivo));
         startActivity(intent);
     }

@@ -12,6 +12,9 @@ import eus.ehu.tta.upv_ehutour.R;
 
 public class BusActivity extends AppCompatActivity {
 
+    private final String LATITUD="43.3320669";
+    private final String LONGITUD="-2.9720285";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +39,8 @@ public class BusActivity extends AppCompatActivity {
 
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
-        intent.putExtra("latitud",getResources().getString(R.string.latitudBizkaibus));
-        intent.putExtra("longitud",getResources().getString(R.string.longitudBizkaibus));
+        intent.putExtra("latitud",LATITUD);
+        intent.putExtra("longitud",LONGITUD);
         intent.putExtra("nombre",getResources().getString(R.string.titleBus));
         startActivity(intent);
     }

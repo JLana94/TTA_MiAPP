@@ -9,6 +9,8 @@ import eus.ehu.tta.upv_ehutour.R;
 
 public class ArboretumActivity extends AppCompatActivity {
 
+    private final String LATITUD="43.3276665";
+    private final String LONGITUD="-2.9702265";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +18,8 @@ public class ArboretumActivity extends AppCompatActivity {
     }
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
-        intent.putExtra("latitud",getResources().getString(R.string.latitudArboretum));
-        intent.putExtra("longitud",getResources().getString(R.string.longitudArboretum));
+        intent.putExtra("latitud",LATITUD);
+        intent.putExtra("longitud",LONGITUD);
         intent.putExtra("nombre",getResources().getString(R.string.titleArboretum));
         startActivity(intent);
     }

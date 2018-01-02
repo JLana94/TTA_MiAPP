@@ -76,13 +76,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         destino=new LatLng(Double.valueOf(intent.getStringExtra("latitud")),Double.valueOf(intent.getStringExtra("longitud")));
         nomDestino=intent.getStringExtra("nombre");
 
-
-
-
-
-
-
-
     }
 
     @Override
@@ -90,12 +83,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         checkPermission();
-
-
-        Log.d("Mi ubicacion","Hola");
-
-
-
     }
 
     private void checkPermission()

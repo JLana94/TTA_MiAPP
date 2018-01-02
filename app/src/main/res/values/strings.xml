@@ -105,20 +105,7 @@
     <string name="respuesta4Despachos">Hay que solicitarlos en secretaría</string>
     <string name="title_activity_maps">Map</string>
 
-    <string name="latitudPolideportivo">43.3295184</string>
-    <string name="longitudPolideportivo">-2.960398</string>
-    <string name="latitudBizkaibus">43.3320669</string>
-    <string name="longitudBizkaibus">-2.9720285</string>
-    <string name="latitudBiblioteca">43.331359</string>
-    <string name="longitudBiblioteca">-2.9688432</string>
-    <string name="latitudHosteleria">43.3322028</string>
-    <string name="longitudHosteleria">-2.970949</string>
-    <string name="latitudArboretum">43.3276665</string>
-    <string name="longitudArboretum">-2.9702265</string>
-    <string name="latitudPlazaLaboa">43.3309575</string>
-    <string name="longitudPlazaLaboa">-2.9670699</string>
-    <string name="latitudMagisterio">43.3330276</string>
-    <string name="longitudMagisterio">-2.9726828</string>
+    <string name="lejos">Estas demasiado lejos</string>
 
 
 

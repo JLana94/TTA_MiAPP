@@ -14,6 +14,8 @@ import eus.ehu.tta.upv_ehutour.R;
 
 public class BibliotecaActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private final String LATITUD="43.331359";
+    private final String LONGITUD="-2.9688432";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,8 +78,8 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
 
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
-        intent.putExtra("latitud",getResources().getString(R.string.latitudBiblioteca));
-        intent.putExtra("longitud",getResources().getString(R.string.longitudBiblioteca));
+        intent.putExtra("latitud",LATITUD);
+        intent.putExtra("longitud",LONGITUD);
         intent.putExtra("nombre",getResources().getString(R.string.titleBiblioteca));
         startActivity(intent);
     }
