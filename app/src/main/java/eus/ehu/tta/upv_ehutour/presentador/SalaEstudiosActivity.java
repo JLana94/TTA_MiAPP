@@ -1,6 +1,7 @@
 package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +34,10 @@ public class SalaEstudiosActivity extends AppCompatActivity {
         if(String.valueOf(spinner.getSelectedItem()).equals(getResources().getString(R.string.spinnerSalaEstudiosText)))
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
-            //Aqui falta escribir que deje almaxenado en local que superado esta prueba
+            SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putInt(LoginActivity.PRUEBA_SALA_ESTUDIOS,1);
+            editor.commit();
         }
         else
         {

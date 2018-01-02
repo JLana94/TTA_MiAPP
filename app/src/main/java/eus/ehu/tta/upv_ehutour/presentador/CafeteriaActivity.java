@@ -1,6 +1,7 @@
 package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,7 +37,10 @@ public class CafeteriaActivity extends AppCompatActivity {
             grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
             Button avanzar=(Button) findViewById(R.id.botonAvanzarCafeteria);
             avanzar.setEnabled(true);
-            //Aqui falta escribir que deje almaxenado en local que superado esta prueba
+            SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putInt(LoginActivity.PRUEBA_CAFETERIA,1);
+            editor.commit();
         }
         else {
             Toast.makeText(this, getResources().getString(R.string.fallo), Toast.LENGTH_SHORT).show();

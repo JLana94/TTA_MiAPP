@@ -106,7 +106,12 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="lejos">Estas demasiado lejos</string>
-
-
+    <string name="enhorabuena">Enhorabuena!</string>
+    <string name="felicitacion">Has completado todas las pruebas</string>
+    <string name="OK">De acuerdo</string>
+    <string name="falta">Todavía tienes que completar </string>
+    <string name="pruebas">pruebas </string>
+    <string name="noCamara">Lo siento, pero tu teléfono no tiene cámara</string>
+    <string name="noApp">Lo siento, pero no tienes la aplicación de la cámara</string>
 
 </resources>

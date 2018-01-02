@@ -1,9 +1,14 @@
 package eus.ehu.tta.upv_ehutour.presentador;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
 
@@ -15,7 +20,44 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        int pruebasRestantes = comporbarPruebas();
+        if (pruebasRestantes == 0) {
+            //FragmentManager fragmentManager = getSupportFragmentManager();
+            //Dialogo dialogo = new Dialogo();
+            //dialogo.show(fragmentManager, "tag");
+            final Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.custom_dialog);
+            dialog.setTitle(getResources().getString(R.string.enhorabuena));
 
+            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+            dialogButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.falta) + " " + String.valueOf(pruebasRestantes) + " " + getResources().getString(R.string.pruebas), Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+        }
+
+    }
+
+
+    private int comporbarPruebas() {
+        SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+
+        int pruebaBiblioteca=prefs.getInt(LoginActivity.PRUEBA_BIBLIOTECA,0);
+        int pruebaPlazaLaboa=prefs.getInt(LoginActivity.PRUEBA_PLAZA_LABOA,0);
+        int pruebaSecretaria=prefs.getInt(LoginActivity.PRUEBA_SECRETARIA,0);
+        int pruebaSalaEstudios=prefs.getInt(LoginActivity.PRUEBA_SALA_ESTUDIOS,0);
+        int pruebaDespachos=prefs.getInt(LoginActivity.PRUEBA_DESPACHOS,0);
+        int pruebaCafeteria=prefs.getInt(LoginActivity.PRUEBA_CAFETERIA,0);
+        int pruebaComedor=prefs.getInt(LoginActivity.PRUEBA_COMEDOR,0);
+
+        return 7-(pruebaBiblioteca+pruebaCafeteria+pruebaComedor+pruebaDespachos+pruebaPlazaLaboa+pruebaSecretaria+pruebaSalaEstudios);
 
     }
 

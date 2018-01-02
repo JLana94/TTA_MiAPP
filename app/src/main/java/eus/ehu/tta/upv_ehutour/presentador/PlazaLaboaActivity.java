@@ -3,6 +3,7 @@ package eus.ehu.tta.upv_ehutour.presentador;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -71,7 +72,10 @@ public class PlazaLaboaActivity extends AppCompatActivity implements GoogleApiCl
         if(String.valueOf(spinner1.getSelectedItem()).equals(getResources().getString(R.string.spinner1PlazaLaboaText))&&String.valueOf(spinner2.getSelectedItem()).equals(getResources().getString(R.string.spinner2PlazaLaboaText))&&String.valueOf(spinner3.getSelectedItem()).equals(getResources().getString(R.string.spinner3PlazaLaboaText))&&String.valueOf(spinner4.getSelectedItem()).equals(getResources().getString(R.string.spinner4PlazaLaboaText))&&String.valueOf(spinner5.getSelectedItem()).equals(getResources().getString(R.string.spinner5PlazaLaboaText))&&String.valueOf(spinner6.getSelectedItem()).equals(getResources().getString(R.string.spinner6PlazaLaboaText)))
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
-            //TODO: Aqui falta escribir que deje almaxenado en local que superado esta prueba
+            SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putInt(LoginActivity.PRUEBA_PLAZA_LABOA,1);
+            editor.commit();
         }
         else
         {
@@ -147,10 +151,6 @@ public class PlazaLaboaActivity extends AppCompatActivity implements GoogleApiCl
         }
         else
             Toast.makeText(this,getResources().getString(R.string.lejos),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
-
-
-
-
 
 
     }
