@@ -38,6 +38,7 @@
     <string name="titleSalaActos">Sala de Actos</string>
     <string name="titleSalaOrdenadores">Sala de Ordenadores</string>
     <string name="titleTalleres">Talleres</string>
+    <string name="titleRegistro">Registrarse</string>
 
     <string name="textoPolideportivo1">El polideportivo es el lugar donde podemos venir a hacer deporte después de clase</string>
     <string name="textoPolideportivo2">Horario del polideportivo: 09:00-13:00</string>
@@ -59,6 +60,13 @@
     <string name="textoSalaActos">La sala de actos o sala Juliana es el lugar donde se celebran acontecimientos especiales</string>
     <string name="textoSalaOrdenadores">Las salas de ordenadores cuentan con equipos informáticos para poder hacer los trabajos que necesiten el uso de os mismos, especialmente aquellos trabajos que necesitan un software especial para ser realizados</string>
     <string name="textoTalleres">Visitarás los talleres cuando tengas que hacer prácticas</string>
+    <string name="textoRegistro1">Nombre de usuario</string>
+    <string name="textoRegistro2">Contraseña</string>
+    <string name="textoRegistro3">Nombre</string>
+    <string name="textoRegistro4">Apellido</string>
+    <string name="textoRegistro5">Centro previo</string>
+    <string name="textoRegistro6">Telefono</string>
+
 
     <string name="eligeOpcion">Elige una opción</string>
     <string-array name="plazaLaboaOpciones">
@@ -113,5 +121,7 @@
     <string name="pruebas">pruebas </string>
     <string name="noCamara">Lo siento, pero tu teléfono no tiene cámara</string>
     <string name="noApp">Lo siento, pero no tienes la aplicación de la cámara</string>
+    <string name="datosIncorrectos">Todos los campos son obligatorios</string>
+    <string name="registroCorrecto">Se ha realizado el registro correctamente</string>
 
 </resources>

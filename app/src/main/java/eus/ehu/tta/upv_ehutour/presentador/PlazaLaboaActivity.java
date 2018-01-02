@@ -76,6 +76,8 @@ public class PlazaLaboaActivity extends AppCompatActivity implements GoogleApiCl
             SharedPreferences.Editor editor=prefs.edit();
             editor.putInt(LoginActivity.PRUEBA_PLAZA_LABOA,1);
             editor.commit();
+            Intent intent=new Intent(this,MapActivity.class);
+            startActivity(intent);
         }
         else
         {

@@ -177,7 +177,7 @@ public class ArboretumActivity extends AppCompatActivity implements GoogleApiCli
 
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
         Double difLong=Math.abs(ubicacion.longitude-Double.valueOf(LONGITUD));
-        //if(difLat<0.0007&&difLong<0.0009)
+        //if(difLat<0.002&&difLong<0.003)
         if(difLat<1&&difLong<1)
         {
             sacarFoto();

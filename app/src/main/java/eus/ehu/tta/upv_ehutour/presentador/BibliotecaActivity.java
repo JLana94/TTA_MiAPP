@@ -65,6 +65,8 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
             SharedPreferences.Editor editor=prefs.edit();
             editor.putInt(LoginActivity.PRUEBA_BIBLIOTECA,1);
             editor.commit();
+            Intent intent=new Intent(this,MapActivity.class);
+            startActivity(intent);
         }
         else {
             Toast.makeText(this, getResources().getString(R.string.fallo), Toast.LENGTH_SHORT).show();
