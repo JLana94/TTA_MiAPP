@@ -7,11 +7,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.modelo.ClienteRest;
+import eus.ehu.tta.upv_ehutour.modelo.Foto;
 import eus.ehu.tta.upv_ehutour.modelo.User;
+import eus.ehu.tta.upv_ehutour.vista.LoginActivity;
 
 /**
  * Created by josu on 16/01/18.
@@ -104,5 +107,32 @@ public class Data {
             return true;
         else
             return false;
+    }
+
+    public boolean enviarFoto(Foto foto, InputStream is,String filename)
+    {
+        JSONObject fotoJSON=new JSONObject();
+        String responseMessageJSON="";
+        String responseMessageFile="";
+        try {
+            fotoJSON.put("nombre",foto.getNombre());
+            fotoJSON.put("timestamp",foto.getTimestamp());
+            fotoJSON.put("usuario",foto.getUsuario());
+            responseMessageJSON=rest.postJSON(fotoJSON,ADD_FOTO);
+            Log.d("Control","Sube el JSON");
+            responseMessageFile=rest.postFile(UPLOAD_FILE,is,filename);
+            Log.d("Control","Sube la foto");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("Response message file",responseMessageFile);
+        Log.d("Response message JSON",responseMessageJSON);
+        return false;
+
+
     }
 }

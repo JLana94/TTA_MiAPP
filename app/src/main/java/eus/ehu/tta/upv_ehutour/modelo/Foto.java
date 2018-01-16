@@ -8,14 +8,14 @@ public class Foto {
     private int id;
     private String nombre;
     private String timestamp;
-    private int idUser;
+    private String usuario;
 
-    public int getIdUser() {
-        return idUser;
-    }
+    public Foto(String nombre,String timestamp, String usuario)
+    {
+        this.nombre=nombre;
+        this.timestamp=timestamp;
+        this.usuario=usuario;
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
     }
 
     public String getTimestamp() {
@@ -40,5 +40,13 @@ public class Foto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }

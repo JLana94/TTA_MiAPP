@@ -26,10 +26,16 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.modelo.Foto;
 import eus.ehu.tta.upv_ehutour.presentador.Data;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
@@ -92,7 +98,42 @@ public class ArboretumActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            //TODO Mandar la foto al servidor
+            String uriAcotada=pictureURI.toString().substring(7);
+            File file=new File(uriAcotada);
+            final String filename=file.getName();
+            InputStream is=null;
+            try {
+                is=new FileInputStream(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+            String login=prefs.getString(LoginActivity.LOGIN,"");
+            String date = new SimpleDateFormat("yyyyMMddHHmm_ss").format(Calendar.getInstance().getTime());
+            String timestamp=date.split("_")[0];
+            Log.d("Control",timestamp);
+            final Foto foto=new Foto(filename,timestamp,login);
+            final String fotoCorrecta=getResources().getString(R.string.fotoCorrecta);
+            final String fotoIncorrecta=getResources().getString(R.string.fotoIncorrecta);
+
+            final InputStream finalIs = is;
+            new ProgressTask<Boolean>(this){
+                @Override
+                protected Boolean work() throws Exception{
+                    Data data =new Data();
+                    return data.enviarFoto(foto, finalIs,filename);
+                }
+
+                @Override
+                protected void onFinish(Boolean result)
+                {
+                    if(result)
+                        Toast.makeText(context,fotoCorrecta,Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(context,fotoIncorrecta,Toast.LENGTH_SHORT).show();
+                }
+            }.execute();
+
 
         }
     }

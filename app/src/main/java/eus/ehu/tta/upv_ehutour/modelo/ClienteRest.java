@@ -107,7 +107,7 @@ public class ClienteRest {
                 conn.disconnect();
         }
     }
-    public int postFile(String path, InputStream is, String fileName) throws IOException{
+    public String postFile(String path, InputStream is, String fileName) throws IOException{
         String boundary=Long.toString(System.currentTimeMillis());
         String newLine="\r\n";
         String prefix="--";
@@ -130,7 +130,7 @@ public class ClienteRest {
             out.writeBytes(newLine);
             out.writeBytes(prefix+boundary+prefix+newLine);
             out.close();
-            return connection.getResponseCode();
+            return connection.getResponseMessage();
         }finally {
             if (connection!=null)
                 connection.disconnect();
