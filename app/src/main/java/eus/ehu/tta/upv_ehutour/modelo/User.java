@@ -13,6 +13,16 @@ public class User {
     private String centroPrevio;
     private String telefono;
 
+    public User(String login, String password, String nombre, String apellido, String centroPrevio, String telefono){
+        this.login=login;
+        this.password=password;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.centroPrevio=centroPrevio;
+        this.telefono=telefono;
+
+    }
+
     public String getLogin() {
         return login;
     }

@@ -3,6 +3,7 @@ package eus.ehu.tta.upv_ehutour.vista;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -25,9 +27,12 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.presentador.Data;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
+import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class ArboretumActivity extends AppCompatActivity {
 
@@ -163,5 +168,25 @@ public class ArboretumActivity extends AppCompatActivity {
             Toast.makeText(this,getResources().getString(R.string.lejos),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
 
 
+    }
+
+    public void verFotos(View view) {
+        new ProgressTask<List<String>>(this){
+            @Override
+            protected List<String> work() throws Exception{
+                Data data =new Data();
+                return data.pedirFotos();
+            }
+
+            @Override
+            protected void onFinish(List<String> result)
+            {
+                for(int i=0;i<result.size();i++)
+                {
+                    Log.d("Control",result.get(i));
+                }
+
+            }
+        }.execute();
     }
 }

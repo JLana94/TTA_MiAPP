@@ -123,5 +123,6 @@
     <string name="noApp">Lo siento, pero no tienes la aplicación de la cámara</string>
     <string name="datosIncorrectos">Todos los campos son obligatorios</string>
     <string name="registroCorrecto">Se ha realizado el registro correctamente</string>
+    <string name="registroIncorrecto">Se ha producido un error</string>
 
 </resources>
