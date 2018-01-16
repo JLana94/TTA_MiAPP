@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.presentador.Data;
+import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,37 +42,49 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void login(View view) {
-        Intent intent=new Intent(this,MapActivity.class);
+
         String login=((EditText)findViewById(R.id.login)).getText().toString();
         String pass=((EditText)findViewById(R.id.pass)).getText().toString();
-        if (autenticar(login,pass))
-        {
-            //Aqui me queda guardar el login en almacenamiento local
-            startActivity(intent);
-        }
+        autenticar(login,pass);
 
 
     }
 
-    private boolean autenticar(String login, String pass) {
-        boolean check=true;
+    private void autenticar(final String login, final String pass) {
+        final String loginIncorrecto=getResources().getString(R.string.loginIncorrecto);
 
+        new ProgressTask<Boolean>(this){
+            @Override
+            protected Boolean work() throws Exception{
+                Data data =new Data();
+                return data.checkLogin(login,pass);
+            }
 
-        //Aqui estaría la parte de la llamada al modelo para comprobar contra el server
+            @Override
+            protected void onFinish(Boolean result)
+            {
+                if(result)
+                {
+                    SharedPreferences prefs=getSharedPreferences(SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+                    SharedPreferences.Editor editor=prefs.edit();
+                    editor.putString(LOGIN,login);
+                    editor.putInt(PRUEBA_BIBLIOTECA,0);
+                    editor.putInt(PRUEBA_CAFETERIA,0);
+                    editor.putInt(PRUEBA_COMEDOR,0);
+                    editor.putInt(PRUEBA_DESPACHOS,0);
+                    editor.putInt(PRUEBA_PLAZA_LABOA,0);
+                    editor.putInt(PRUEBA_SALA_ESTUDIOS,0);
+                    editor.putInt(PRUEBA_SECRETARIA,0);
+                    editor.commit();
+                    Intent intent=new Intent(context,MapActivity.class);
+                    startActivity(intent);
 
+                }
+                else
+                    Toast.makeText(context, loginIncorrecto, Toast.LENGTH_SHORT).show();
 
-        SharedPreferences prefs=getSharedPreferences(SHARED_PREFERENCE_NAME,MODE_PRIVATE);
-        SharedPreferences.Editor editor=prefs.edit();
-        editor.putString(LOGIN,login);
-        editor.putInt(PRUEBA_BIBLIOTECA,0);
-        editor.putInt(PRUEBA_CAFETERIA,0);
-        editor.putInt(PRUEBA_COMEDOR,0);
-        editor.putInt(PRUEBA_DESPACHOS,0);
-        editor.putInt(PRUEBA_PLAZA_LABOA,0);
-        editor.putInt(PRUEBA_SALA_ESTUDIOS,0);
-        editor.putInt(PRUEBA_SECRETARIA,0);
-        editor.commit();
-        return check;
+            }
+        }.execute();
     }
 
     public void mantenerSesion(View view) {

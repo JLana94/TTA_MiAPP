@@ -36,6 +36,12 @@ public class ClienteRest {
         connection.setUseCaches(false);
         return connection;
     }
+    private HttpURLConnection getConnectionQuery(String path, String login, String pass) throws IOException {
+        URL url=new URL(baseURL+"/"+path+"?login="+login+"&password="+pass);
+        HttpURLConnection connection=(HttpURLConnection) url.openConnection();
+        connection.setUseCaches(false);
+        return connection;
+    }
     public String getJson (String path) throws IOException, JSONException
     {
         HttpURLConnection conn=null;
@@ -44,6 +50,30 @@ public class ClienteRest {
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 return br.readLine();
+
+            }finally {
+                if (conn!=null)
+                {
+                    conn.disconnect();
+                }
+            }
+        }finally {
+            if (conn!=null)
+            {
+                conn.disconnect();
+            }
+        }
+    }
+
+    public String getString (String path, String login, String pass) throws IOException, JSONException
+    {
+        HttpURLConnection conn=null;
+        try {
+            conn=getConnectionQuery(path,login,pass);
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String readLine =br.readLine();
+                return readLine;
 
             }finally {
                 if (conn!=null)
@@ -76,10 +106,6 @@ public class ClienteRest {
             if (conn!=null)
                 conn.disconnect();
         }
-
-
-
-
     }
     public int postFile(String path, InputStream is, String fileName) throws IOException{
         String boundary=Long.toString(System.currentTimeMillis());

@@ -124,5 +124,6 @@
     <string name="datosIncorrectos">Todos los campos son obligatorios</string>
     <string name="registroCorrecto">Se ha realizado el registro correctamente</string>
     <string name="registroIncorrecto">Se ha producido un error</string>
+    <string name="loginIncorrecto">Usuario o contraseña incorrecto</string>
 
 </resources>

@@ -87,4 +87,22 @@ public class Data {
 
         return fotos;
     }
+
+    public boolean checkLogin(String login,String pass)
+    {
+        String response="";
+        try {
+            response=rest.getString(CHECK_LOGIN,login,pass);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(response.equals("OK"))
+            return true;
+        else
+            return false;
+    }
 }
