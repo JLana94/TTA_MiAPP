@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,16 +7,16 @@ import android.view.View;
 
 import eus.ehu.tta.upv_ehutour.R;
 
-public class SalaOrdenadoresActivity extends AppCompatActivity {
+public class TalleresActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sala_orenadores);
+        setContentView(R.layout.activity_talleres);
     }
 
     public void avanzar(View view) {
-        Intent intent=new Intent(this,TalleresActivity.class);
+        Intent intent=new Intent(this,MapActivity.class);
         startActivity(intent);
     }
 }

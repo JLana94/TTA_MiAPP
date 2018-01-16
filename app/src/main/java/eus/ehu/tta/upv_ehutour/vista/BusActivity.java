@@ -1,12 +1,10 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebView;
-import android.widget.LinearLayout;
 
 import eus.ehu.tta.upv_ehutour.R;
 

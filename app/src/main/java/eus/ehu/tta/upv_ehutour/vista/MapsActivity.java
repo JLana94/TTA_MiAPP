@@ -1,23 +1,17 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -47,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
+import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.DataParser;
 
@@ -57,9 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
-    private LocationManager locationManager;
-    private String provider;
-    private LatLng miUbicacion;
+    private LatLng ubicacion;
     private LatLng destino;
     private String nomDestino;
     private LocationRequest mLocationRequest;
@@ -121,9 +113,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnConnectionFailedListener(this)
                 .build();
         mGoogleApiClient.connect();
-
-
-
     }
 
     @Override
@@ -144,17 +133,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnected(Bundle bundle) {
 
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(1000); // Update location every second
+        Localizador loc=new Localizador();
+        Location posicion=loc.getLocation(getApplicationContext());
+        LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
 
-        Location lastKnownLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        miUbicacion=new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
-
-
-
-
-        String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +miUbicacion.latitude+ "," + miUbicacion.longitude  + "&destination=" +destino.latitude+ "," + destino.longitude  + "&sensor=false&units=metric&mode=walking";
+        String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +ubicacion.latitude+ "," + ubicacion.longitude  + "&destination=" +destino.latitude+ "," + destino.longitude  + "&sensor=false&units=metric&mode=walking";
         FetchUrl FetchUrl = new FetchUrl();
 
         // Start downloading json data from Google Directions API
@@ -202,15 +185,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         protected String doInBackground(String... url) {
 
-            // For storing data from web service
             String data = "";
 
             try {
-                // Fetching the data from web service
+
                 data = downloadUrl(url[0]);
-                Log.d("Background Task data", data.toString());
             } catch (Exception e) {
-                Log.d("Background Task", e.toString());
             }
             return data;
         }
@@ -253,11 +233,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             data = sb.toString();
-            Log.d("downloadUrl", data.toString());
             br.close();
 
         } catch (Exception e) {
-            Log.d("Exception", e.toString());
         } finally {
             iStream.close();
             urlConnection.disconnect();
@@ -276,17 +254,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             try {
                 jObject = new JSONObject(jsonData[0]);
-                Log.d("ParserTask",jsonData[0].toString());
                 DataParser parser = new DataParser();
-                Log.d("ParserTask", parser.toString());
 
                 // Starts parsing data
                 routes = parser.parse(jObject);
-                Log.d("ParserTask","Executing routes");
-                Log.d("ParserTask",routes.toString());
 
             } catch (Exception e) {
-                Log.d("ParserTask",e.toString());
                 e.printStackTrace();
             }
             return routes;
@@ -322,25 +295,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lineOptions.width(20);
                 lineOptions.color(Color.BLUE);
 
-                Log.d("onPostExecute","onPostExecute lineoptions decoded");
-
             }
 
             // Drawing polyline in the Google Map for the i-th route
             if(lineOptions != null) {
                 mMap.addPolyline(lineOptions);
             }
-            else {
-                Log.d("onPostExecute","without Polylines drawn");
-            }
         }
-
-
-
     }
-
-
-
-
-
 }

@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,18 +11,18 @@ import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
 
-public class DespachosActivity extends AppCompatActivity {
+public class CafeteriaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_despachos);
+        setContentView(R.layout.activity_cafeteria);
     }
 
     public void check(View view) {
-        int correct=1;
+        int correct=2;
         int selected=-1;
-        RadioGroup grupo=(RadioGroup) findViewById(R.id.pruebaDespachos);
+        RadioGroup grupo=(RadioGroup) findViewById(R.id.pruebaCafeteria);
         int opciones=grupo.getChildCount();
         for(int i=0;i<opciones;i++)
         {
@@ -35,11 +35,11 @@ public class DespachosActivity extends AppCompatActivity {
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
             grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
-            Button avanzar=(Button) findViewById(R.id.botonAvanzarDespachos);
+            Button avanzar=(Button) findViewById(R.id.botonAvanzarCafeteria);
             avanzar.setEnabled(true);
             SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
             SharedPreferences.Editor editor=prefs.edit();
-            editor.putInt(LoginActivity.PRUEBA_DESPACHOS,1);
+            editor.putInt(LoginActivity.PRUEBA_CAFETERIA,1);
             editor.commit();
         }
         else {
@@ -51,7 +51,7 @@ public class DespachosActivity extends AppCompatActivity {
     }
 
     public void avanzar(View view) {
-        Intent intent=new Intent(this,SalaActosActivity.class);
+        Intent intent=new Intent(this,ComedorActivity.class);
         startActivity(intent);
     }
 }

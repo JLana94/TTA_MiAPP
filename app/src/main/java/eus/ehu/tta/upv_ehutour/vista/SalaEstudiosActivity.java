@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +38,8 @@ public class SalaEstudiosActivity extends AppCompatActivity {
             SharedPreferences.Editor editor=prefs.edit();
             editor.putInt(LoginActivity.PRUEBA_SALA_ESTUDIOS,1);
             editor.commit();
+            Button avanzar=(Button) findViewById(R.id.botonAvanzarSalaEstudios);
+            avanzar.setEnabled(true);
         }
         else
         {
@@ -45,7 +47,6 @@ public class SalaEstudiosActivity extends AppCompatActivity {
         }
 
 
-        Button avanzar=(Button) findViewById(R.id.botonAvanzarSalaEstudios);
-        avanzar.setEnabled(true);
+
     }
 }

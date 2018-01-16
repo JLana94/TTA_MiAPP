@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -25,13 +23,13 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 
-public class BibliotecaActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
+public class BibliotecaActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String LATITUD="43.331359";
     private final String LONGITUD="-2.9688432";
-    private LocationRequest mLocationRequest;
-    private GoogleApiClient mGoogleApiClient;
+    private final int REQUEST_PERMISION_LOCATION=90;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,13 +73,6 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-    public void prueba(View view) {
-        checkPermission();
-
-
-
-
-    }
 
     public void activarPrueba()
     {
@@ -111,7 +102,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    private void checkPermission()
+    public void prueba(View view)
     {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -122,7 +113,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    99);
+                    REQUEST_PERMISION_LOCATION);
 
         }
 
@@ -130,7 +121,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
 
     @SuppressLint("MissingPermission")
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == 99) {
+        if (requestCode == REQUEST_PERMISION_LOCATION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkPostion();
             } else {
@@ -140,25 +131,9 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
     }
     public void checkPostion()
     {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(LocationServices.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-        mGoogleApiClient.connect();
-    }
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onConnected(Bundle bundle) {
-
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(1000); // Update location every second
-
-        Location lastKnownLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        LatLng ubicacion=new LatLng(lastKnownLocation.getLatitude(),lastKnownLocation.getLongitude());
-
+        Localizador loc=new Localizador();
+        Location posicion=loc.getLocation(getApplicationContext());
+        LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
         Double difLong=Math.abs(ubicacion.longitude-Double.valueOf(LONGITUD));
         //if(difLat<0.0007&&difLong<0.0009)
@@ -169,17 +144,6 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         else
             Toast.makeText(this,getResources().getString(R.string.lejos),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
 
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }

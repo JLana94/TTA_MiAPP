@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.vista;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,18 +11,18 @@ import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
 
-public class CafeteriaActivity extends AppCompatActivity {
+public class DespachosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cafeteria);
+        setContentView(R.layout.activity_despachos);
     }
 
     public void check(View view) {
-        int correct=2;
+        int correct=1;
         int selected=-1;
-        RadioGroup grupo=(RadioGroup) findViewById(R.id.pruebaCafeteria);
+        RadioGroup grupo=(RadioGroup) findViewById(R.id.pruebaDespachos);
         int opciones=grupo.getChildCount();
         for(int i=0;i<opciones;i++)
         {
@@ -35,11 +35,11 @@ public class CafeteriaActivity extends AppCompatActivity {
         {
             Toast.makeText(this,getResources().getString(R.string.acierto),Toast.LENGTH_SHORT).show();
             grupo.getChildAt(correct).setBackgroundColor(getResources().getColor(R.color.verde));
-            Button avanzar=(Button) findViewById(R.id.botonAvanzarCafeteria);
+            Button avanzar=(Button) findViewById(R.id.botonAvanzarDespachos);
             avanzar.setEnabled(true);
             SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
             SharedPreferences.Editor editor=prefs.edit();
-            editor.putInt(LoginActivity.PRUEBA_CAFETERIA,1);
+            editor.putInt(LoginActivity.PRUEBA_DESPACHOS,1);
             editor.commit();
         }
         else {
@@ -51,7 +51,7 @@ public class CafeteriaActivity extends AppCompatActivity {
     }
 
     public void avanzar(View view) {
-        Intent intent=new Intent(this,ComedorActivity.class);
+        Intent intent=new Intent(this,SalaActosActivity.class);
         startActivity(intent);
     }
 }
