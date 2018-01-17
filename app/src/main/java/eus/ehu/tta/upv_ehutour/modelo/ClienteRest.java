@@ -121,12 +121,19 @@ public class ClienteRest {
             connection.setDoOutput(true);
             DataOutputStream out =new DataOutputStream(connection.getOutputStream());
             out.writeBytes(prefix+boundary+newLine);
+            out.writeBytes("Content-Disposition: form-data; name=\"filetype\""+newLine);
+            out.writeBytes(newLine);
+            out.writeBytes("img"+newLine);
+            out.writeBytes(prefix+boundary+newLine);
             out.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\""+fileName+"\""+newLine);
+            out.writeBytes("Content-Type: image/jpg"+newLine);//Aqui poner content type imagen para que me lo coja mi servidor
             out.writeBytes(newLine);
             byte[] data=new byte[1024*1024];
             int len;
-            while ((len=is.read(data))>0)
-                out.write(data,0,len);
+            while ((len=is.read(data))>0) {
+                out.write(data, 0, len);
+                Log.d("Control", "1");
+            }
             out.writeBytes(newLine);
             out.writeBytes(prefix+boundary+prefix+newLine);
             out.close();

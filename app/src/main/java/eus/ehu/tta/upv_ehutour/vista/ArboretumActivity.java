@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +18,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
@@ -36,7 +31,7 @@ import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Foto;
-import eus.ehu.tta.upv_ehutour.presentador.Data;
+import eus.ehu.tta.upv_ehutour.modelo.Server;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
@@ -77,7 +72,7 @@ public class ArboretumActivity extends AppCompatActivity {
                 File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
                 try
                 {
-                    File file= File.createTempFile("arboretum",".jpg",dir);
+                    File file= File.createTempFile("arb",".jpg",dir);
                     pictureURI= Uri.fromFile(file);
                     intent.putExtra(MediaStore.EXTRA_OUTPUT,pictureURI);
                     startActivityForResult(intent,REQUEST_IMAGE_CAPTURE);
@@ -120,8 +115,8 @@ public class ArboretumActivity extends AppCompatActivity {
             new ProgressTask<Boolean>(this){
                 @Override
                 protected Boolean work() throws Exception{
-                    Data data =new Data();
-                    return data.enviarFoto(foto, finalIs,filename);
+                    Server server =new Server();
+                    return server.enviarFoto(foto, finalIs,filename);
                 }
 
                 @Override
@@ -215,8 +210,8 @@ public class ArboretumActivity extends AppCompatActivity {
         new ProgressTask<List<String>>(this){
             @Override
             protected List<String> work() throws Exception{
-                Data data =new Data();
-                return data.pedirFotos();
+                Server server =new Server();
+                return server.pedirFotos();
             }
 
             @Override

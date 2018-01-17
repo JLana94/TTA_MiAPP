@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
-import eus.ehu.tta.upv_ehutour.presentador.Data;
+import eus.ehu.tta.upv_ehutour.modelo.Server;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class LoginActivity extends AppCompatActivity {
@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         new ProgressTask<Boolean>(this){
             @Override
             protected Boolean work() throws Exception{
-                Data data =new Data();
-                return data.checkLogin(login,pass);
+                Server server =new Server();
+                return server.checkLogin(login,pass);
             }
 
             @Override

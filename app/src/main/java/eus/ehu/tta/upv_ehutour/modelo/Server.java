@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.presentador;
+package eus.ehu.tta.upv_ehutour.modelo;
 
 import android.util.Log;
 
@@ -20,9 +20,10 @@ import eus.ehu.tta.upv_ehutour.vista.LoginActivity;
  * Created by josu on 16/01/18.
  */
 
-public class Data {
+public class Server {
 
     private final String URL_SERVER="http://u017633.ehu.eus:28080/ServidorRemoto";
+    //private final String URL_SERVER="http://192.168.100.90:8080/ServidorRemoto";
     private final String UPLOAD_FILE="rest/TourEHU/uploadFile";
     private final String REQUEST_FOTOS="rest/TourEHU/requestFotos";
     private final String ADD_FOTO="rest/TourEHU/addFoto";
@@ -31,7 +32,7 @@ public class Data {
 
     ClienteRest rest;
 
-    public Data()
+    public Server()
     {
         rest=new ClienteRest(URL_SERVER);
     }
@@ -131,7 +132,10 @@ public class Data {
 
         Log.d("Response message file",responseMessageFile);
         Log.d("Response message JSON",responseMessageJSON);
-        return false;
+        if (responseMessageFile.equals("OK")&&responseMessageJSON.equals("OK"))
+            return true;
+        else
+            return false;
 
 
     }
