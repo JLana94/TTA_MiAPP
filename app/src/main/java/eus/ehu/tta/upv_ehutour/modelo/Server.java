@@ -1,5 +1,6 @@
 package eus.ehu.tta.upv_ehutour.modelo;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -35,6 +36,11 @@ public class Server {
     public Server()
     {
         rest=new ClienteRest(URL_SERVER);
+    }
+
+    public Server(String URL_static)
+    {
+        rest=new ClienteRest(URL_static);
     }
 
 
@@ -139,4 +145,19 @@ public class Server {
 
 
     }
+
+    public Bitmap recibirFoto(String filename)
+    {
+        Bitmap bitmap=null;
+        try {
+            bitmap=rest.getFoto(filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+
+    }
+
 }

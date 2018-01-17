@@ -58,7 +58,8 @@
         <activity
             android:name=".vista.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".vista.RegistroActivity"></activity>
+        <activity android:name=".vista.RegistroActivity" />
+        <activity android:name=".vista.FotosActivity"></activity>
     </application>
 
 </manifest>

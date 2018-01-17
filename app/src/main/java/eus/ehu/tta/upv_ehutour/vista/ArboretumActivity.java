@@ -25,6 +25,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ArboretumActivity extends AppCompatActivity {
     private final int REQUEST_IMAGE_CAPTURE = 1;
     private final int REQUEST_PERMISION_LOCATION=90;
     private final int REQUEST_PERMISION_WRITE=91;
+    public static final String LISTA_FOTOS="listaFotos";
     private Uri pictureURI;
     private final String LATITUD="43.3276665";
     private final String LONGITUD="-2.9702265";
@@ -145,11 +147,7 @@ public class ArboretumActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_PERMISION_WRITE);
-
             }
-
-
-
 
         } else {
             ActivityCompat.requestPermissions(this,
@@ -220,6 +218,10 @@ public class ArboretumActivity extends AppCompatActivity {
                 for(int i=0;i<result.size();i++)
                 {
                     Log.d("Control",result.get(i));
+                    Intent intent = new Intent(context,FotosActivity.class);
+                    intent.putExtra(LISTA_FOTOS, (Serializable) result);
+                    startActivity(intent);
+
                 }
 
             }

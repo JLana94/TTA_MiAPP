@@ -127,5 +127,6 @@
     <string name="loginIncorrecto">Usuario o contraseña incorrecto</string>
     <string name="fotoCorrecta">Foto subida correctamente</string>
     <string name="fotoIncorrecta">No se ha podido subir la foto</string>
+    <string name="botonSalir">Salir</string>
 
 </resources>

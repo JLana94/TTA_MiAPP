@@ -1,5 +1,7 @@
 package eus.ehu.tta.upv_ehutour.modelo;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -141,6 +143,30 @@ public class ClienteRest {
         }finally {
             if (connection!=null)
                 connection.disconnect();
+        }
+    }
+
+    public Bitmap getFoto (String foto) throws IOException, JSONException
+    {
+        HttpURLConnection conn=null;
+        try {
+            conn=getConnection(foto);
+            try {
+                conn.connect();
+                Bitmap imagen = BitmapFactory.decodeStream(conn.getInputStream());
+                return imagen;
+
+            }finally {
+                if (conn!=null)
+                {
+                    conn.disconnect();
+                }
+            }
+        }finally {
+            if (conn!=null)
+            {
+                conn.disconnect();
+            }
         }
     }
 
