@@ -2,6 +2,7 @@ package eus.ehu.tta.upv_ehutour.vista;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,10 +13,12 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -33,7 +36,9 @@ import java.util.List;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Foto;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
+import eus.ehu.tta.upv_ehutour.modelo.User;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
+import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class ArboretumActivity extends AppCompatActivity {
@@ -137,24 +142,36 @@ public class ArboretumActivity extends AppCompatActivity {
 
     public void prueba (View view)
     {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                checkPostion();
-            }
-            else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_PERMISION_WRITE);
-            }
+        NetworkChecker networkChecker=new NetworkChecker(this);
+        if(networkChecker.checkConexion())
+        {
+            if(networkChecker.conexionType().equals("WIFI")==false)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.noWifi).setTitle(R.string.cuidado);
+                builder.setPositiveButton(R.string.entiendo, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        checkPermission();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_PERMISION_LOCATION);
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else
+                checkPermission();
 
         }
+        else
+            Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 
@@ -205,6 +222,39 @@ public class ArboretumActivity extends AppCompatActivity {
     }
 
     public void verFotos(View view) {
+
+        NetworkChecker networkChecker=new NetworkChecker(this);
+        if(networkChecker.checkConexion())
+        {
+            if(networkChecker.conexionType().equals("WIFI")==false)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.noWifi).setTitle(R.string.cuidado);
+                builder.setPositiveButton(R.string.entiendo, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        lanzarVerFotos();
+                    }
+                });
+                builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else
+                lanzarVerFotos();
+
+        }
+        else
+            Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void lanzarVerFotos()
+    {
         new ProgressTask<List<String>>(this){
             @Override
             protected List<String> work() throws Exception{
@@ -226,5 +276,27 @@ public class ArboretumActivity extends AppCompatActivity {
 
             }
         }.execute();
+    }
+
+    private void checkPermission()
+    {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                checkPostion();
+            }
+            else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_PERMISION_WRITE);
+            }
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_PERMISION_LOCATION);
+
+        }
     }
 }

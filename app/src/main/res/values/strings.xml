@@ -128,5 +128,10 @@
     <string name="fotoCorrecta">Foto subida correctamente</string>
     <string name="fotoIncorrecta">No se ha podido subir la foto</string>
     <string name="botonSalir">Salir</string>
+    <string name="noInternet">Lo siento, no tienes conexión a Internet</string>
+    <string name="cuidado">Cuidado</string>
+    <string name="noWifi">No estas conectado a una red WiFi y vas a enviar o recibir imagenes</string>
+    <string name="entiendo">Lo entiendo</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>

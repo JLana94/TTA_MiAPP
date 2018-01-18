@@ -36,7 +36,7 @@ public class FotosActivity extends AppCompatActivity implements View.OnClickList
         imagen=(ImageView)findViewById(R.id.imagen);
         imagen.setOnClickListener(this);
         
-        i=0;
+        i=9;
         
         cargarImagen(i);
 
@@ -64,16 +64,16 @@ public class FotosActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if(i<9)
-            i++;
+        if(i>0)
+            i--;
         else
-            i=0;
+            i=9;
         cargarImagen(i);
 
     }
 
     public void salir(View view) {
-        Intent intent = new Intent(this,ArboretumActivity.class);
+        Intent intent = new Intent(this,MapActivity.class);
         startActivity(intent);
     }
 }

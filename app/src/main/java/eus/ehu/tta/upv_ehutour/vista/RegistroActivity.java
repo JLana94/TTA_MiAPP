@@ -11,6 +11,7 @@ import android.widget.Toast;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
 import eus.ehu.tta.upv_ehutour.modelo.User;
+import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class RegistroActivity extends AppCompatActivity {
@@ -23,55 +24,63 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void registro(View view) {
 
-        String usuario=((EditText)findViewById(R.id.usuarioRegistro)).getText().toString();
-        String pass=((EditText)findViewById(R.id.passRegistro)).getText().toString();
-        String nombre=((EditText)findViewById(R.id.nombreRegistro)).getText().toString();
-        String apellido=((EditText)findViewById(R.id.apellidoRegistro)).getText().toString();
-        String centro=((EditText)findViewById(R.id.centroRegistro)).getText().toString();
-        String telefono=((EditText)findViewById(R.id.telefonoRegistro)).getText().toString();
-        final String registroCorrecto=getResources().getString(R.string.registroCorrecto);
-        final String registroIncorrecto=getResources().getString(R.string.registroIncorrecto);
-        final User user=new User(usuario,pass,nombre,apellido,centro,telefono);
-
-        if(user.getLogin().equals("")==false&&user.getPassword().equals("")==false&&user.getNombre().equals("")==false&&user.getApellido().equals("")==false&&user.getCentroPrevio().equals("")==false&&user.getTelefono().equals("")==false)
+        NetworkChecker networkChecker=new NetworkChecker(this);
+        if(networkChecker.checkConexion())
         {
+            String usuario=((EditText)findViewById(R.id.usuarioRegistro)).getText().toString();
+            String pass=((EditText)findViewById(R.id.passRegistro)).getText().toString();
+            String nombre=((EditText)findViewById(R.id.nombreRegistro)).getText().toString();
+            String apellido=((EditText)findViewById(R.id.apellidoRegistro)).getText().toString();
+            String centro=((EditText)findViewById(R.id.centroRegistro)).getText().toString();
+            String telefono=((EditText)findViewById(R.id.telefonoRegistro)).getText().toString();
+            final String registroCorrecto=getResources().getString(R.string.registroCorrecto);
+            final String registroIncorrecto=getResources().getString(R.string.registroIncorrecto);
+            final User user=new User(usuario,pass,nombre,apellido,centro,telefono);
 
-            new ProgressTask<Boolean>(this){
-                @Override
-                protected Boolean work() throws Exception{
-                    Server server =new Server();
-                    return server.registro(user);
-                }
+            if(user.getLogin().equals("")==false&&user.getPassword().equals("")==false&&user.getNombre().equals("")==false&&user.getApellido().equals("")==false&&user.getCentroPrevio().equals("")==false&&user.getTelefono().equals("")==false)
+            {
 
-                @Override
-                protected void onFinish(Boolean result)
-                {
-                    if(result)
-                    {
-                        Toast.makeText(context, registroCorrecto, Toast.LENGTH_SHORT).show();
-                        SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
-                        SharedPreferences.Editor editor=prefs.edit();
-                        editor.putString(LoginActivity.LOGIN,user.getLogin());
-                        editor.putInt(LoginActivity.PRUEBA_BIBLIOTECA,0);
-                        editor.putInt(LoginActivity.PRUEBA_CAFETERIA,0);
-                        editor.putInt(LoginActivity.PRUEBA_COMEDOR,0);
-                        editor.putInt(LoginActivity.PRUEBA_DESPACHOS,0);
-                        editor.putInt(LoginActivity.PRUEBA_PLAZA_LABOA,0);
-                        editor.putInt(LoginActivity.PRUEBA_SALA_ESTUDIOS,0);
-                        editor.putInt(LoginActivity.PRUEBA_SECRETARIA,0);
-                        editor.commit();
-                        Intent intent=new Intent(context,MapActivity.class);
-                        startActivity(intent);
+                new ProgressTask<Boolean>(this){
+                    @Override
+                    protected Boolean work() throws Exception{
+                        Server server =new Server();
+                        return server.registro(user);
                     }
-                    else
-                        Toast.makeText(context, registroIncorrecto, Toast.LENGTH_SHORT).show();
 
-                }
-            }.execute();
+                    @Override
+                    protected void onFinish(Boolean result)
+                    {
+                        if(result)
+                        {
+                            Toast.makeText(context, registroCorrecto, Toast.LENGTH_SHORT).show();
+                            SharedPreferences prefs=getSharedPreferences(LoginActivity.SHARED_PREFERENCE_NAME,MODE_PRIVATE);
+                            SharedPreferences.Editor editor=prefs.edit();
+                            editor.putString(LoginActivity.LOGIN,user.getLogin());
+                            editor.putInt(LoginActivity.PRUEBA_BIBLIOTECA,0);
+                            editor.putInt(LoginActivity.PRUEBA_CAFETERIA,0);
+                            editor.putInt(LoginActivity.PRUEBA_COMEDOR,0);
+                            editor.putInt(LoginActivity.PRUEBA_DESPACHOS,0);
+                            editor.putInt(LoginActivity.PRUEBA_PLAZA_LABOA,0);
+                            editor.putInt(LoginActivity.PRUEBA_SALA_ESTUDIOS,0);
+                            editor.putInt(LoginActivity.PRUEBA_SECRETARIA,0);
+                            editor.commit();
+                            Intent intent=new Intent(context,MapActivity.class);
+                            startActivity(intent);
+                        }
+                        else
+                            Toast.makeText(context, registroIncorrecto, Toast.LENGTH_SHORT).show();
+
+                    }
+                }.execute();
+
+            }
+            else
+                Toast.makeText(this, getResources().getString(R.string.datosIncorrectos), Toast.LENGTH_SHORT).show();
 
         }
         else
-            Toast.makeText(this, getResources().getString(R.string.datosIncorrectos), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+
 
 
     }

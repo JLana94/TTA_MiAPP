@@ -1,12 +1,16 @@
 package eus.ehu.tta.upv_ehutour.vista;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 
 public class BusActivity extends AppCompatActivity {
 
@@ -27,10 +31,17 @@ public class BusActivity extends AppCompatActivity {
         web.loadUrl(getResources().getString(R.string.URLBizkaibus));
 
         layout.addView(web);*/
+        NetworkChecker networkChecker=new NetworkChecker(this);
+        if(networkChecker.checkConexion())
+        {
+            Uri uri= Uri.parse(getResources().getString(R.string.URLBizkaibus));
+            Intent intent=new Intent(Intent.ACTION_VIEW,uri);
+            startActivity(intent);
 
-        Uri uri= Uri.parse(getResources().getString(R.string.URLBizkaibus));
-        Intent intent=new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(intent);
+        }
+        else
+            Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+
 
 
     }

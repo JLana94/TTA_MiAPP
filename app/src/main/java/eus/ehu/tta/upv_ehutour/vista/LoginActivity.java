@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
+import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,9 +44,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view) {
 
-        String login=((EditText)findViewById(R.id.login)).getText().toString();
-        String pass=((EditText)findViewById(R.id.pass)).getText().toString();
-        autenticar(login,pass);
+        NetworkChecker networkChecker=new NetworkChecker(this);
+        if(networkChecker.checkConexion())
+        {
+            String login=((EditText)findViewById(R.id.login)).getText().toString();
+            String pass=((EditText)findViewById(R.id.pass)).getText().toString();
+            autenticar(login,pass);
+        }
+        else
+            Toast.makeText(this, getResources().getString(R.string.noInternet), Toast.LENGTH_SHORT).show();
+
+
+
+
 
 
     }
