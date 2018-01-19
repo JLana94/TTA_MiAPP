@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,26 +11,26 @@ import android.widget.LinearLayout;
 
 import eus.ehu.tta.upv_ehutour.R;
 
-public class SalaActosActivity extends AppCompatActivity {
+public class SalaOrdenadoresActivity extends AppCompatActivity {
 
     private final int ESCALA=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sala_actos);
+        setContentView(R.layout.activity_sala_orenadores);
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize=ESCALA;
-        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_sala_actos,options);
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_sala_ordenadores,options);
 
-        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundSalaActos);
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundSalaOrdenadores);
 
         background.setBackgroundDrawable(new BitmapDrawable(imagen));
     }
 
     public void avanzar(View view) {
-        Intent intent=new Intent(this,SalaOrdenadoresActivity.class);
+        Intent intent=new Intent(this,TalleresActivity.class);
         startActivity(intent);
     }
 }

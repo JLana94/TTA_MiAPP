@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
 import eus.ehu.tta.upv_ehutour.modelo.User;
+import eus.ehu.tta.upv_ehutour.presentador.LoginActivity;
+import eus.ehu.tta.upv_ehutour.presentador.MapActivity;
 import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 

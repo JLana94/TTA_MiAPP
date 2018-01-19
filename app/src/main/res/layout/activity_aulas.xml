@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="eus.ehu.tta.upv_ehutour.vista.AulasActivity">
+    tools:context="eus.ehu.tta.upv_ehutour.presentador.AulasActivity">
 
     <TextView
         android:layout_width="match_parent"

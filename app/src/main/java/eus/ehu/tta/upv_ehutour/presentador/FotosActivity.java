@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,15 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
-import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class FotosActivity extends AppCompatActivity implements View.OnClickListener {
 

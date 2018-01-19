@@ -21,7 +21,9 @@ public class Localizador {
         gpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
         networkEnabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        Location netLoc = null, gpsLoc = null, location = null;
+        Location netLoc = null;
+        Location gpsLoc = null;
+        Location location = null;
 
         if (gpsEnabled)
             gpsLoc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);

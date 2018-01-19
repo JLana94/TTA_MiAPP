@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -20,7 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 import eus.ehu.tta.upv_ehutour.R;
-import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 
 public class BibliotecaActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.modelo;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import com.google.android.gms.maps.model.LatLng;
 

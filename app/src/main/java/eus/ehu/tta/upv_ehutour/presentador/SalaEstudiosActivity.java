@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import eus.ehu.tta.upv_ehutour.R;
+import eus.ehu.tta.upv_ehutour.presentador.AulasActivity;
+import eus.ehu.tta.upv_ehutour.presentador.LoginActivity;
 
 public class SalaEstudiosActivity extends AppCompatActivity {
 

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vista.LoginActivity">
+        <activity android:name=".presentador.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,25 +24,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".vista.MapActivity"
+            android:name=".presentador.MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme" />
-        <activity android:name=".vista.PolideportivoActivity" />
-        <activity android:name=".vista.PlazaLaboaActivity" />
-        <activity android:name=".vista.ArboretumActivity" />
-        <activity android:name=".vista.BibliotecaActivity" />
-        <activity android:name=".vista.HosteleriaActivity" />
-        <activity android:name=".vista.BusActivity" />
-        <activity android:name=".vista.MagisterioActivity" />
-        <activity android:name=".vista.SecretariaActivity" />
-        <activity android:name=".vista.CafeteriaActivity" />
-        <activity android:name=".vista.ComedorActivity" />
-        <activity android:name=".vista.SalaEstudiosActivity" />
-        <activity android:name=".vista.AulasActivity" />
-        <activity android:name=".vista.DespachosActivity" />
-        <activity android:name=".vista.SalaActosActivity" />
-        <activity android:name=".vista.SalaOrdenadoresActivity" />
-        <activity android:name=".vista.TalleresActivity" />
+        <activity android:name=".presentador.PolideportivoActivity" />
+        <activity android:name=".presentador.PlazaLaboaActivity" />
+        <activity android:name=".presentador.ArboretumActivity" />
+        <activity android:name=".presentador.BibliotecaActivity" />
+        <activity android:name=".presentador.HosteleriaActivity" />
+        <activity android:name=".presentador.BusActivity" />
+        <activity android:name=".presentador.MagisterioActivity" />
+        <activity android:name=".presentador.SecretariaActivity" />
+        <activity android:name=".presentador.CafeteriaActivity" />
+        <activity android:name=".presentador.ComedorActivity" />
+        <activity android:name=".presentador.SalaEstudiosActivity" />
+        <activity android:name=".presentador.AulasActivity" />
+        <activity android:name=".presentador.DespachosActivity" />
+        <activity android:name=".presentador.SalaActosActivity" />
+        <activity android:name=".presentador.SalaOrdenadoresActivity" />
+        <activity android:name=".presentador.TalleresActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,10 +56,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".vista.MapsActivity"
+            android:name=".presentador.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".vista.RegistroActivity" />
-        <activity android:name=".vista.FotosActivity"></activity>
+        <activity android:name=".presentador.RegistroActivity" />
+        <activity android:name=".presentador.FotosActivity"></activity>
     </application>
 
 </manifest>

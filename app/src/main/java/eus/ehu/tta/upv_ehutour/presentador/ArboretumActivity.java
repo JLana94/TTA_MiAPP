@@ -1,8 +1,7 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +11,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -21,9 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -42,9 +38,6 @@ import java.util.List;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Foto;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
-import eus.ehu.tta.upv_ehutour.presentador.Localizador;
-import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
-import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
 
 public class ArboretumActivity extends AppCompatActivity {
 

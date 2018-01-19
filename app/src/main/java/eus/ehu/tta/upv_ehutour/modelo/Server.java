@@ -12,11 +12,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import eus.ehu.tta.upv_ehutour.modelo.ClienteRest;
-import eus.ehu.tta.upv_ehutour.modelo.Foto;
-import eus.ehu.tta.upv_ehutour.modelo.User;
-import eus.ehu.tta.upv_ehutour.vista.LoginActivity;
-
 /**
  * Created by josu on 16/01/18.
  */

@@ -1,4 +1,4 @@
-package eus.ehu.tta.upv_ehutour.vista;
+package eus.ehu.tta.upv_ehutour.presentador;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -43,7 +43,7 @@ import java.util.List;
 
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 import eus.ehu.tta.upv_ehutour.R;
-import eus.ehu.tta.upv_ehutour.modelo.DataParser;
+import eus.ehu.tta.upv_ehutour.presentador.DataParser;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -61,7 +61,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Intent intent=getIntent();
@@ -140,7 +139,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +ubicacion.latitude+ "," + ubicacion.longitude  + "&destination=" +destino.latitude+ "," + destino.longitude  + "&sensor=false&units=metric&mode=walking";
         FetchUrl FetchUrl = new FetchUrl();
 
-        // Start downloading json data from Google Directions API
         FetchUrl.execute(url);
         mMap.addMarker(new MarkerOptions().position(destino).title(nomDestino));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(destino));

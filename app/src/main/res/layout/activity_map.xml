@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="eus.ehu.tta.upv_ehutour.vista.MapActivity">
+    tools:context="eus.ehu.tta.upv_ehutour.presentador.MapActivity">
 
     <Button
         android:layout_width="34dp"
