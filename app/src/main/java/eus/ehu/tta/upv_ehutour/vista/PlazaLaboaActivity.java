@@ -5,7 +5,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +18,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,12 +37,38 @@ public class PlazaLaboaActivity extends AppCompatActivity {
     private final String LATITUD="43.3309575";
     private final String LONGITUD="-2.9670699";
     private final int REQUEST_PERMISION_LOCATION=90;
+    private final int ESCALA=2;
+    private final int ESCALA_MINI=3;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plaza_laboa);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_plaza_laboa,options);
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundPlazaLaboa);
+        background.setBackgroundDrawable(new BitmapDrawable(imagen));
+
+
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_biblioteca,R.id.backgroundLaboaBiblioteca);
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_eroski,R.id.backgroundLaboaEroski);
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_futbolin,R.id.backgroundLaboaFutbolin);
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_cafeteria,R.id.backgroundLaboaCafeteria);
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_facultad_ciencia,R.id.backgroundLaboaFacCiencias);
+        cargarFotoPequeña(R.drawable.foto_plaza_laboa_facultad_comunicacion,R.id.backgroundLaboaFacComunicaciones);
+
+    }
+
+    private void cargarFotoPequeña(int idFoto, int idImageView) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA_MINI;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),idFoto,options);
+        ImageView imageView=(ImageView) findViewById(idImageView);
+        imageView.setImageBitmap(imagen);
     }
 
 
@@ -118,8 +150,7 @@ public class PlazaLaboaActivity extends AppCompatActivity {
     }
     public void checkPostion()
     {
-        Localizador loc=new Localizador();
-        Location posicion=loc.getLocation(getApplicationContext());
+        Location posicion=Localizador.getLocation(getApplicationContext());
         LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
         Double difLong=Math.abs(ubicacion.longitude-Double.valueOf(LONGITUD));

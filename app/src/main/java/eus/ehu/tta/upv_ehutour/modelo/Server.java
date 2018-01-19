@@ -24,14 +24,13 @@ import eus.ehu.tta.upv_ehutour.vista.LoginActivity;
 public class Server {
 
     private final String URL_SERVER="http://u017633.ehu.eus:28080/ServidorRemoto";
-    //private final String URL_SERVER="http://192.168.100.90:8080/ServidorRemoto";
     private final String UPLOAD_FILE="rest/TourEHU/uploadFile";
     private final String REQUEST_FOTOS="rest/TourEHU/requestFotos";
     private final String ADD_FOTO="rest/TourEHU/addFoto";
     private final String ADD_USUARIO="rest/TourEHU/addUsuario";
     private final String CHECK_LOGIN="rest/TourEHU/checkLogin";
 
-    ClienteRest rest;
+    private ClienteRest rest;
 
     public Server()
     {
@@ -126,9 +125,7 @@ public class Server {
             fotoJSON.put("timestamp",foto.getTimestamp());
             fotoJSON.put("usuario",foto.getUsuario());
             responseMessageJSON=rest.postJSON(fotoJSON,ADD_FOTO);
-            Log.d("Control","Sube el JSON");
             responseMessageFile=rest.postFile(UPLOAD_FILE,is,filename);
-            Log.d("Control","Sube la foto");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -136,8 +133,6 @@ public class Server {
             e.printStackTrace();
         }
 
-        Log.d("Response message file",responseMessageFile);
-        Log.d("Response message JSON",responseMessageJSON);
         if (responseMessageFile.equals("OK")&&responseMessageJSON.equals("OK"))
             return true;
         else

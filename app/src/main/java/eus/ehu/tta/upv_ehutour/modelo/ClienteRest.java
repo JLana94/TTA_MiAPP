@@ -2,7 +2,6 @@ package eus.ehu.tta.upv_ehutour.modelo;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,7 +101,6 @@ public class ClienteRest {
             PrintWriter pw=new PrintWriter(conn.getOutputStream());
             pw.print(json.toString());
             pw.close();
-            Log.d("Control",conn.getResponseMessage());
             return conn.getResponseMessage();
         }finally {
             if (conn!=null)
@@ -134,7 +132,6 @@ public class ClienteRest {
             int len;
             while ((len=is.read(data))>0) {
                 out.write(data, 0, len);
-                Log.d("Control", "1");
             }
             out.writeBytes(newLine);
             out.writeBytes(prefix+boundary+prefix+newLine);
@@ -149,11 +146,14 @@ public class ClienteRest {
     public Bitmap getFoto (String foto) throws IOException, JSONException
     {
         HttpURLConnection conn=null;
+        int scale=4;
         try {
             conn=getConnection(foto);
             try {
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize=scale;
                 conn.connect();
-                Bitmap imagen = BitmapFactory.decodeStream(conn.getInputStream());
+                Bitmap imagen = BitmapFactory.decodeStream(conn.getInputStream(),null,options);
                 return imagen;
 
             }finally {

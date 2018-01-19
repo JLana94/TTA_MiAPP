@@ -2,12 +2,17 @@ package eus.ehu.tta.upv_ehutour.vista;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -19,6 +24,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -36,7 +42,6 @@ import java.util.List;
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.modelo.Foto;
 import eus.ehu.tta.upv_ehutour.modelo.Server;
-import eus.ehu.tta.upv_ehutour.modelo.User;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 import eus.ehu.tta.upv_ehutour.presentador.NetworkChecker;
 import eus.ehu.tta.upv_ehutour.presentador.ProgressTask;
@@ -47,16 +52,25 @@ public class ArboretumActivity extends AppCompatActivity {
     private final int REQUEST_IMAGE_CAPTURE = 1;
     private final int REQUEST_PERMISION_LOCATION=90;
     private final int REQUEST_PERMISION_WRITE=91;
+    private final int ESCALA=2;
     public static final String LISTA_FOTOS="listaFotos";
     private Uri pictureURI;
     private final String LATITUD="43.3276665";
     private final String LONGITUD="-2.9702265";
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arboretum);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_arboretum,options);
+
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundArbretum);
+
+        background.setBackgroundDrawable(new BitmapDrawable(imagen));
+
     }
     public void llegarAqui(View view) {
         Intent intent=new Intent(this,MapsActivity.class);
@@ -113,7 +127,6 @@ public class ArboretumActivity extends AppCompatActivity {
             String login=prefs.getString(LoginActivity.LOGIN,"");
             String date = new SimpleDateFormat("yyyyMMddHHmm_ss").format(Calendar.getInstance().getTime());
             String timestamp=date.split("_")[0];
-            Log.d("Control",timestamp);
             final Foto foto=new Foto(filename,timestamp,login);
             final String fotoCorrecta=getResources().getString(R.string.fotoCorrecta);
             final String fotoIncorrecta=getResources().getString(R.string.fotoIncorrecta);
@@ -204,8 +217,8 @@ public class ArboretumActivity extends AppCompatActivity {
     }
     public void checkPostion()
     {
-        Localizador loc=new Localizador();
-        Location posicion=loc.getLocation(getApplicationContext());
+
+        Location posicion=Localizador.getLocation(getApplicationContext());
         LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
 
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
@@ -267,7 +280,6 @@ public class ArboretumActivity extends AppCompatActivity {
             {
                 for(int i=0;i<result.size();i++)
                 {
-                    Log.d("Control",result.get(i));
                     Intent intent = new Intent(context,FotosActivity.class);
                     intent.putExtra(LISTA_FOTOS, (Serializable) result);
                     startActivity(intent);

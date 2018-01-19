@@ -5,23 +5,20 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 
@@ -30,6 +27,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
     private final String LATITUD="43.331359";
     private final String LONGITUD="-2.9688432";
     private final int REQUEST_PERMISION_LOCATION=90;
+    private final int ESCALA=2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +39,15 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         {
             grupo.getChildAt(i).setOnClickListener(this);
         }
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_biblioteca,options);
+
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundBiblioteca);
+
+        background.setBackgroundDrawable(new BitmapDrawable(imagen));
+
     }
 
     public void checkPrueba(View view) {
@@ -131,8 +138,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
     }
     public void checkPostion()
     {
-        Localizador loc=new Localizador();
-        Location posicion=loc.getLocation(getApplicationContext());
+        Location posicion=Localizador.getLocation(getApplicationContext());
         LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
         Double difLong=Math.abs(ubicacion.longitude-Double.valueOf(LONGITUD));

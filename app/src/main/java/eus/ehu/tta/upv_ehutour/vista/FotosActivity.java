@@ -47,7 +47,6 @@ public class FotosActivity extends AppCompatActivity implements View.OnClickList
             @Override
             protected Bitmap work() throws Exception{
                 Server server =new Server(URL_STATIC);
-                Log.d("URL",URL_STATIC+listaFotos.get(i));
                 return server.recibirFoto(listaFotos.get(i));
             }
 

@@ -5,29 +5,26 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.File;
 import java.io.IOException;
-
 import eus.ehu.tta.upv_ehutour.R;
 import eus.ehu.tta.upv_ehutour.presentador.Localizador;
 
@@ -38,6 +35,7 @@ public class ComedorActivity extends AppCompatActivity {
     private final int REQUEST_IMAGE_CAPTURE = 1;
     private final int REQUEST_PERMISION_LOCATION = 90;
     private final int REQUEST_PERMISION_WRITE = 91;
+    private final int ESCALA=2;
     private Uri pictureURI;
 
     @Override
@@ -46,6 +44,14 @@ public class ComedorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comedor);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_comedor,options);
+
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundComedor);
+
+        background.setBackgroundDrawable(new BitmapDrawable(imagen));
     }
 
 
@@ -141,8 +147,7 @@ public class ComedorActivity extends AppCompatActivity {
     }
 
     public void checkPostion() {
-        Localizador loc = new Localizador();
-        Location posicion = loc.getLocation(getApplicationContext());
+        Location posicion = Localizador.getLocation(getApplicationContext());
         LatLng ubicacion = new LatLng(posicion.getLatitude(), posicion.getLongitude());
         Double difLat = Math.abs(ubicacion.latitude - Double.valueOf(LATITUD));
         Double difLong = Math.abs(ubicacion.longitude - Double.valueOf(LONGITUD));

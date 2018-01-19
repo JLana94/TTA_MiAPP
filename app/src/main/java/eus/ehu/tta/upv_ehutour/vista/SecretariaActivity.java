@@ -5,6 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
@@ -17,6 +20,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,9 +39,8 @@ public class SecretariaActivity extends AppCompatActivity {
     private final String LONGITUD="-2.9726828";
     private final int REQUEST_PERMISION_LOCATION=90;
     private final int REQUEST_PERMISION_WRITE=91;
+    private final int ESCALA=2;
     private final int REQUEST_IMAGE_CAPTURE = 1;
-    private LocationRequest mLocationRequest;
-    private GoogleApiClient mGoogleApiClient;
     private Uri pictureURI;
 
     @Override
@@ -46,6 +49,14 @@ public class SecretariaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_secretaria);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize=ESCALA;
+        Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_secretaria,options);
+
+        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundSecretaria);
+
+        background.setBackgroundDrawable(new BitmapDrawable(imagen));
     }
 
     public void sacarFoto() {
@@ -148,8 +159,7 @@ public class SecretariaActivity extends AppCompatActivity {
     }
     public void checkPostion()
     {
-        Localizador loc=new Localizador();
-        Location posicion=loc.getLocation(getApplicationContext());
+        Location posicion=Localizador.getLocation(getApplicationContext());
         LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
 
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
