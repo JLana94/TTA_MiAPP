@@ -16,14 +16,13 @@ public class Localizador {
 
         boolean gpsEnabled = false;
         boolean networkEnabled = false;
+        Location netLoc = null;
+        Location gpsLoc = null;
+        Location location = null;
 
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         gpsEnabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
         networkEnabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        Location netLoc = null;
-        Location gpsLoc = null;
-        Location location = null;
 
         if (gpsEnabled)
             gpsLoc = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);

@@ -50,11 +50,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LocationListener {
 
     private GoogleMap mMap;
-    private FusedLocationProviderClient mFusedLocationClient;
-    private LatLng ubicacion;
     private LatLng destino;
     private String nomDestino;
-    private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -117,13 +114,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onStart() {
         super.onStart();
-        // Connect the client.
 
     }
 
     @Override
     protected void onStop() {
-        // Disconnecting the client invalidates it.
         mGoogleApiClient.disconnect();
         super.onStop();
     }
@@ -137,9 +132,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng ubicacion=new LatLng(posicion.getLatitude(),posicion.getLongitude());
 
         String url = "http://maps.googleapis.com/maps/api/directions/json?origin=" +ubicacion.latitude+ "," + ubicacion.longitude  + "&destination=" +destino.latitude+ "," + destino.longitude  + "&sensor=false&units=metric&mode=walking";
-        FetchUrl FetchUrl = new FetchUrl();
+        FetchUrl fetchUrl = new FetchUrl();
 
-        FetchUrl.execute(url);
+        fetchUrl.execute(url);
         mMap.addMarker(new MarkerOptions().position(destino).title(nomDestino));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(destino));
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
@@ -199,7 +194,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             ParserTask parserTask = new ParserTask();
 
-            // Invokes the thread for parsing the JSON data
             parserTask.execute(result);
 
         }
@@ -211,14 +205,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         HttpURLConnection urlConnection = null;
         try {
             URL url = new URL(strUrl);
-
-            // Creating an http connection to communicate with url
             urlConnection = (HttpURLConnection) url.openConnection();
 
-            // Connecting to url
             urlConnection.connect();
 
-            // Reading data from url
             iStream = urlConnection.getInputStream();
 
             BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
@@ -243,7 +233,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
 
-        // Parsing the data in non-ui thread
         @Override
         protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
 
@@ -254,7 +243,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 jObject = new JSONObject(jsonData[0]);
                 DataParser parser = new DataParser();
 
-                // Starts parsing data
                 routes = parser.parse(jObject);
 
             } catch (Exception e) {
@@ -263,21 +251,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return routes;
         }
 
-        // Executes in UI thread, after the parsing process
         @Override
         protected void onPostExecute(List<List<HashMap<String, String>>> result) {
             ArrayList<LatLng> points;
             PolylineOptions lineOptions = null;
 
-            // Traversing through all the routes
             for (int i = 0; i < result.size(); i++) {
                 points = new ArrayList<>();
                 lineOptions = new PolylineOptions();
 
-                // Fetching i-th route
                 List<HashMap<String, String>> path = result.get(i);
 
-                // Fetching all the points in i-th route
                 for (int j = 0; j < path.size(); j++) {
                     HashMap<String, String> point = path.get(j);
 
@@ -288,14 +272,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     points.add(position);
                 }
 
-                // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
                 lineOptions.width(20);
                 lineOptions.color(Color.BLUE);
 
             }
 
-            // Drawing polyline in the Google Map for the i-th route
             if(lineOptions != null) {
                 mMap.addPolyline(lineOptions);
             }

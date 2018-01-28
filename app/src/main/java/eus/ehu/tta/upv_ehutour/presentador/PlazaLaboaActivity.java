@@ -119,14 +119,10 @@ public class PlazaLaboaActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
                 checkPostion();
-
-
-
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_PERMISION_LOCATION);
-
         }
 
     }
@@ -137,7 +133,7 @@ public class PlazaLaboaActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkPostion();
             } else {
-                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -153,7 +149,7 @@ public class PlazaLaboaActivity extends AppCompatActivity {
             activarPrueba();
         }
         else
-            Toast.makeText(this,getResources().getString(R.string.lejos),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+            Toast.makeText(this,getResources().getString(R.string.lejos),Toast.LENGTH_SHORT).show();
 
 
     }

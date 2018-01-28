@@ -35,9 +35,6 @@ public class MapActivity extends AppCompatActivity {
 
         int pruebasRestantes = comporbarPruebas();
         if (pruebasRestantes == 0) {
-            //FragmentManager fragmentManager = getSupportFragmentManager();
-            //Dialogo dialogo = new Dialogo();
-            //dialogo.show(fragmentManager, "tag");
             final Dialog dialog = new Dialog(this);
             dialog.setContentView(R.layout.custom_dialog);
             dialog.setTitle(getResources().getString(R.string.enhorabuena));

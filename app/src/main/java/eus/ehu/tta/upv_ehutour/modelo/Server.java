@@ -55,7 +55,6 @@ public class Server {
             usuarioJSON.put("telefono",usuario.getTelefono());
 
             responseMessage=rest.postJSON(usuarioJSON,ADD_USUARIO);
-            Log.d("Control",responseMessage);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {

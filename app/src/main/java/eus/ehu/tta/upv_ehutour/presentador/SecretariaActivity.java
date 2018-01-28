@@ -53,7 +53,7 @@ public class SecretariaActivity extends AppCompatActivity {
         options.inSampleSize=ESCALA;
         Bitmap imagen = BitmapFactory.decodeResource(getResources(),R.drawable.foto_secretaria,options);
 
-        LinearLayout background=(LinearLayout) findViewById(R.id.backgroundSecretaria);
+        LinearLayout background= findViewById(R.id.backgroundSecretaria);
 
         background.setBackgroundDrawable(new BitmapDrawable(imagen));
     }
@@ -61,7 +61,7 @@ public class SecretariaActivity extends AppCompatActivity {
     public void sacarFoto() {
 
         if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA))
-            Toast.makeText(this,getResources().getString(R.string.noCamara),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+            Toast.makeText(this,getResources().getString(R.string.noCamara),Toast.LENGTH_SHORT).show();
         else
         {
 
@@ -82,7 +82,7 @@ public class SecretariaActivity extends AppCompatActivity {
                 }
             }
             else
-                Toast.makeText(this,getResources().getString(R.string.noApp),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+                Toast.makeText(this,getResources().getString(R.string.noApp),Toast.LENGTH_SHORT).show();
 
         }
 
@@ -144,14 +144,14 @@ public class SecretariaActivity extends AppCompatActivity {
 
                 }
             } else {
-                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();
             }
         }
         if (requestCode == REQUEST_PERMISION_WRITE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 checkPostion();
             } else {
-                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();// Permission was denied. Display an error message.
+                Toast.makeText(this,getResources().getString(R.string.permisoDenegado),Toast.LENGTH_SHORT).show();
             }
         }
 
