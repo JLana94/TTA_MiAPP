@@ -142,7 +142,7 @@ public class BibliotecaActivity extends AppCompatActivity implements View.OnClic
         Double difLat=Math.abs(ubicacion.latitude-Double.valueOf(LATITUD));
         Double difLong=Math.abs(ubicacion.longitude-Double.valueOf(LONGITUD));
         //if(difLat<0.0007&&difLong<0.0009)
-        if(difLat<1&&difLong<1)
+        if(difLat<180&&difLong<360)
         {
             activarPrueba();
         }
